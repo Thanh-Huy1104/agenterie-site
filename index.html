@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenterie — Automatisation gouvernée pour les entreprises canadiennes</title>
+<meta name="description" content="Systèmes d'IA pour vos processus documentaires : chaque action journalisée, chaque budget plafonné, rien ne passe sans approbation humaine. Montréal.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231F547A'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='white' font-family='Georgia'>a</text></svg>">
+<meta property="og:title" content="Agenterie — Automatisation gouvernée">
+<meta property="og:description" content="L'automatisation pour les opérations qui n'ont pas droit à l'erreur. Livré en semaines. Hébergé chez vous.">
+<meta property="og:url" content="https://agenterie.ca">
+</head>
+<body>
+<style>
+  /* AGENTERIE v2 — blueprint style, business content. Committed light world. */
+  :root {
+    color-scheme: light;
+    --paper:   #F6F5F1;
+    --board:   #FFFFFF;
+    --grid:    rgba(31,84,122,.05);
+    --ink:     #22282C;
+    --ink-2:   #59636E;
+    --ink-3:   #8B939D;
+    --line:    #D6D7D0;
+    --plan:    #1F547A;
+    --plan-bg: #EAF0F5;
+    --stamp:   #B04A2A;
+    --stamp-bg:#F5E7E1;
+    --ok:      #2F7D57;
+    --ok-bg:   #E9F2EC;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    --serif: Georgia, "Iowan Old Style", serif;
+    --sans: -apple-system, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  }
+  :root[data-theme="dark"], :root[data-theme="light"] {
+    color-scheme: light;
+    --paper:#F6F5F1; --board:#FFFFFF; --grid:rgba(31,84,122,.05);
+    --ink:#22282C; --ink-2:#59636E; --ink-3:#8B939D; --line:#D6D7D0;
+    --plan:#1F547A; --plan-bg:#EAF0F5; --stamp:#B04A2A; --stamp-bg:#F5E7E1;
+    --ok:#2F7D57; --ok-bg:#E9F2EC;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62;
+    background:
+      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 28px),
+      var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
+  body.en [lang="fr"] { display:none !important; }
+  body:not(.en) [lang="en"] { display:none !important; }
+
+  nav { position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter:blur(8px); border-bottom:1.5px solid var(--ink); }
+  .nav-in { display:flex; align-items:center; gap:26px; padding:14px 0; }
+  .logo { font-family:var(--serif); font-weight:700; font-size:20px; color:var(--ink); text-decoration:none; }
+  .logo i { font-style:normal; color:var(--stamp); }
+  .nav-links { display:flex; gap:22px; margin-left:auto; font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
+  .nav-links a { color:var(--ink-2); text-decoration:none; }
+  .nav-links a:hover { color:var(--plan); }
+  .lang { margin-left:8px; font-family:var(--mono); font-size:11.5px; border:1px solid var(--ink); background:var(--board); color:var(--ink); padding:5px 10px; cursor:pointer; }
+  @media (max-width:760px){ .nav-links { display:none; } }
+
+  header.hero { padding:76px 0 56px; }
+  .titleblock { border:1.5px solid var(--ink); background:var(--board); }
+  .tb-top { padding:34px 36px 28px; border-bottom:1.5px solid var(--ink); }
+  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--plan); margin:0 0 16px; }
+  h1 { font-family:var(--serif); font-size:clamp(1.9rem,5vw,3.1rem); line-height:1.08; letter-spacing:-.02em; font-weight:700; margin:0 0 16px; max-width:22ch; text-wrap:balance; }
+  h1 em { font-style:italic; color:var(--plan); }
+  .hero .sub { font-size:17.5px; color:var(--ink-2); max-width:60ch; margin:0; }
+  .tb-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
+  .tbf { padding:12px 20px; border-right:1px solid var(--line); font-family:var(--mono); }
+  .tbf:last-child { border-right:0; }
+  .tbf .k { font-size:9px; text-transform:uppercase; letter-spacing:.13em; color:var(--ink-3); display:block; }
+  .tbf .v { font-size:12.5px; }
+  @media (max-width:640px){ .tbf { border-right:0; border-top:1px solid var(--line); } }
+  .cta-row { display:flex; gap:14px; flex-wrap:wrap; margin-top:24px; }
+  .btn { font-family:var(--mono); font-size:13px; text-decoration:none; padding:12px 22px; border:1.5px solid var(--ink); color:var(--ink); background:var(--board); }
+  .btn.primary { background:var(--ink); color:var(--paper); font-weight:700; }
+  .btn.primary:hover { background:var(--plan); border-color:var(--plan); }
+  .btn:hover { border-color:var(--plan); color:var(--plan); }
+
+  section { padding:60px 0; }
+  .planhead { display:flex; align-items:baseline; gap:16px; border-bottom:1.5px solid var(--ink); padding-bottom:10px; margin-bottom:26px; }
+  .plan-no { font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--plan); text-transform:uppercase; white-space:nowrap; }
+  h2 { font-family:var(--serif); font-size:clamp(1.4rem,3.1vw,1.95rem); letter-spacing:-.02em; font-weight:700; margin:0; text-wrap:balance; }
+  .lead { font-size:17px; color:var(--ink-2); max-width:64ch; }
+
+  .walls { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
+  @media (max-width:720px){ .walls { grid-template-columns:1fr; } }
+  .wall { border:1px solid var(--ink); background:var(--board); padding:20px 22px; }
+  .wall .q { font-family:var(--serif); font-style:italic; font-size:16.5px; margin:0 0 8px; }
+  .wall .a { font-size:13.5px; color:var(--ink-2); margin:0; }
+  .wall .a b { color:var(--ok); }
+
+  .dia { border:1.5px solid var(--ink); background:var(--board); padding:24px; margin:26px 0 8px; overflow-x:auto; }
+  .dia-cap { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin:0 0 8px; line-height:1.6; }
+  .drow { display:flex; align-items:stretch; min-width:700px; }
+  .dnode { border:1.5px solid var(--ink); background:var(--board); padding:11px 13px; flex:1; min-width:0; }
+  .dnode .t { font-family:var(--mono); font-size:11.5px; font-weight:700; }
+  .dnode .d { font-size:11.5px; color:var(--ink-2); margin-top:3px; line-height:1.45; }
+  .dnode.src { border-style:dashed; border-color:var(--ink-3); }
+  .dnode.gate { border-color:var(--stamp); border-width:2px; background:var(--stamp-bg); }
+  .dnode.gate .t { color:var(--stamp); }
+  .dnode.sys { background:var(--plan-bg); }
+  .darrow { display:flex; align-items:center; padding:0 5px; color:var(--plan); font-family:var(--mono); font-size:14px; flex:none; }
+  .dlayer { border:1.5px solid var(--plan); background:var(--plan-bg); padding:11px 15px; margin-top:12px; min-width:700px; }
+  .dlayer .t { font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--plan); letter-spacing:.08em; text-transform:uppercase; }
+  .dlayer .items { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:7px; font-family:var(--mono); font-size:11px; color:var(--ink-2); }
+
+  .nums { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:28px; }
+  @media (max-width:760px){ .nums { grid-template-columns:repeat(2,1fr); } }
+  .num { border:1px solid var(--ink); background:var(--board); padding:20px; }
+  .num .v { font-family:var(--mono); font-size:26px; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums; color:var(--plan); }
+  .num .v span { font-size:14px; color:var(--ink-3); }
+  .num .l { margin-top:7px; font-size:12.5px; color:var(--ink-2); line-height:1.45; }
+
+  .cases { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
+  @media (max-width:820px){ .cases { grid-template-columns:1fr; } }
+  .case { border:1px solid var(--ink); background:var(--board); padding:22px; }
+  .case .ch { display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .case h3 { font-family:var(--serif); font-size:18px; font-weight:700; margin:0; }
+  .case .sector { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
+  .case p { font-size:13.5px; color:var(--ink-2); margin:0; }
+  .chip { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:.1em; padding:2px 7px; border:1px solid currentColor; white-space:nowrap; }
+  .chip.ok { color:var(--ok); background:var(--ok-bg); }
+  .chip.pl { color:var(--plan); background:var(--plan-bg); }
+
+  .method { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+  @media (max-width:820px){ .method { grid-template-columns:1fr; } }
+  .step { border:1px solid var(--ink); background:var(--board); padding:22px; }
+  .step .n { font-family:var(--mono); font-size:10px; color:var(--stamp); letter-spacing:.12em; text-transform:uppercase; margin-bottom:10px; }
+  .step h3 { font-family:var(--serif); font-size:18.5px; margin:0 0 8px; }
+  .step p { font-size:13.5px; color:var(--ink-2); margin:0; }
+
+  .quoteband { border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); background:var(--board); }
+  .quoteband blockquote { margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.15rem,2.5vw,1.5rem); max-width:36ch; line-height:1.4; }
+  .quoteband blockquote b { color:var(--stamp); font-style:normal; }
+  .quoteband .attr { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-top:14px; }
+
+  footer { padding:50px 0 70px; }
+  .foot-grid { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+  .foot-left p { font-size:13.5px; color:var(--ink-3); max-width:40ch; margin:10px 0 0; }
+  .foot-right { font-family:var(--mono); font-size:13px; color:var(--ink-2); text-align:right; line-height:2; }
+  .foot-right a { color:var(--ink); }
+  .mock { position:fixed; bottom:14px; right:14px; z-index:20; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; background:var(--stamp); color:#FFF; padding:5px 10px; font-weight:700; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+
+<nav><div class="wrap nav-in">
+  <a class="logo" href="#">l'agenterie<i>.</i></a>
+  <div class="nav-links">
+    <a href="#probleme" lang="fr">Le problème</a><a href="#probleme" lang="en">The problem</a>
+    <a href="#archi" lang="fr">L'architecture</a><a href="#archi" lang="en">Architecture</a>
+    <a href="#preuves" lang="fr">Preuves</a><a href="#preuves" lang="en">Proof</a>
+    <a href="#cas" lang="fr">Cas d'usage</a><a href="#cas" lang="en">Use cases</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="lang" onclick="document.body.classList.toggle('en')"><span lang="fr">EN</span><span lang="en">FR</span></button>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="titleblock">
+    <div class="tb-top">
+      <p class="kicker" lang="fr">Automatisation gouvernée · Montréal</p>
+      <p class="kicker" lang="en">Governed automation · Montréal</p>
+      <h1 lang="fr">L'automatisation pour les opérations qui n'ont pas <em>droit à l'erreur</em>.</h1>
+      <h1 lang="en">Automation for operations that <em>can't afford surprises</em>.</h1>
+      <p class="sub" lang="fr">Vos documents — factures, réclamations, courriels — traités par des systèmes d'IA où chaque action est journalisée, chaque budget plafonné en code, et où rien n'atteint vos systèmes sans approbation humaine. Livré en semaines. Hébergé chez vous.</p>
+      <p class="sub" lang="en">Your documents — invoices, claims, email — processed by AI systems where every action is logged, every budget is enforced in code, and nothing reaches your systems without human approval. Delivered in weeks. Hosted on your infrastructure.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact" lang="fr">Parler d'un processus</a>
+        <a class="btn primary" href="#contact" lang="en">Discuss a process</a>
+        <a class="btn" href="#archi" lang="fr">Voir l'architecture</a>
+        <a class="btn" href="#archi" lang="en">See the architecture</a>
+      </div>
+    </div>
+    <div class="tb-fields">
+      <div class="tbf"><span class="k" lang="fr">En production</span><span class="k" lang="en">In production</span><span class="v" lang="fr">59+ jours · 1,31 M$ traités</span><span class="v" lang="en">59+ days · $1.31M processed</span></div>
+      <div class="tbf"><span class="k" lang="fr">Contrôle</span><span class="k" lang="en">Control</span><span class="v" lang="fr">100 % approuvé par un humain</span><span class="v" lang="en">100% human-approved</span></div>
+      <div class="tbf"><span class="k" lang="fr">Langues</span><span class="k" lang="en">Languages</span><span class="v">FR / EN</span></div>
+      <div class="tbf"><span class="k" lang="fr">Conformité</span><span class="k" lang="en">Compliance</span><span class="v">OSFI E-23 · SOC 2 · ISO 42001</span></div>
+    </div>
+  </div>
+</div></header>
+
+<section id="probleme"><div class="wrap">
+  <div class="planhead"><span class="plan-no">Plan Nº 01</span>
+    <h2 lang="fr">Les quatre questions que vous vous posez déjà</h2>
+    <h2 lang="en">The four questions you're already asking</h2>
+  </div>
+  <div class="walls">
+    <div class="wall">
+      <p class="q" lang="fr">« Que se passe-t-il quand l'IA se trompe et que personne ne s'en aperçoit ? »</p>
+      <p class="q" lang="en">"What happens when the AI is wrong and nobody notices?"</p>
+      <p class="a" lang="fr"><b>Notre réponse :</b> la précision est mesurée en continu, par source, et rapportée. Les cas incertains arrivent pré-diagnostiqués dans une file d'exceptions — jamais en silence.</p>
+      <p class="a" lang="en"><b>Our answer:</b> accuracy is measured continuously, per source, and reported. Uncertain cases arrive pre-diagnosed in an exception queue — never silently.</p>
+    </div>
+    <div class="wall">
+      <p class="q" lang="fr">« Rien ne doit être transmis à nos systèmes sans un humain. »</p>
+      <p class="q" lang="en">"Nothing posts to our systems without a human."</p>
+      <p class="a" lang="fr"><b>Notre réponse :</b> c'est l'architecture, pas une option. Le portail d'approbation est le seul chemin vers votre système de gestion — un clic, une signature, une trace.</p>
+      <p class="a" lang="en"><b>Our answer:</b> that's the architecture, not a setting. The approval gate is the only path into your system of record — one click, one signature, one trace.</p>
+    </div>
+    <div class="wall">
+      <p class="q" lang="fr">« Pouvez-vous prouver, après coup, exactement ce qui a été fait ? »</p>
+      <p class="q" lang="en">"Can you prove, afterwards, exactly what was done?"</p>
+      <p class="a" lang="fr"><b>Notre réponse :</b> chaque action vit dans un journal chaîné par hachage — rejouable, vérifiable, infalsifiable. Votre vérificateur peut le rejouer ligne par ligne.</p>
+      <p class="a" lang="en"><b>Our answer:</b> every action lives in a hash-chained log — replayable, verifiable, tamper-evident. Your auditor can replay it line by line.</p>
+    </div>
+    <div class="wall">
+      <p class="q" lang="fr">« Qu'est-ce qui empêche ça de brûler de l'argent sans fin ? »</p>
+      <p class="q" lang="en">"What stops this from burning money forever?"</p>
+      <p class="a" lang="fr"><b>Notre réponse :</b> des plafonds appliqués en code — pas des tableaux de bord. Notre système de référence traite 1,31 M$ de documents pour ~2 $/mois de dépense modèle.</p>
+      <p class="a" lang="en"><b>Our answer:</b> caps enforced in code — not dashboards. Our reference system processes $1.31M in documents on ~$2/month of model spend.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="archi"><div class="wrap">
+  <div class="planhead"><span class="plan-no">Plan Nº 02</span>
+    <h2 lang="fr">L'architecture de référence</h2>
+    <h2 lang="en">The reference architecture</h2>
+  </div>
+  <p class="lead" lang="fr">Un seul patron : les documents avancent vers votre système de gestion, mais tout passe par le portail d'approbation humain, et tout repose sur une couche de gouvernance qui est du code — pas une politique.</p>
+  <p class="lead" lang="en">One pattern: documents flow toward your system of record, but everything passes through the human approval gate, and everything rests on a governance layer that is code — not policy.</p>
+  <div class="dia">
+    <div class="drow">
+      <div class="dnode src"><div class="t">SOURCES</div><div class="d" lang="fr">boîte courriel · portails · documents</div><div class="d" lang="en">shared inbox · portals · documents</div></div>
+      <div class="darrow">→</div>
+      <div class="dnode"><div class="t" lang="fr">CLASSER</div><div class="t" lang="en">CLASSIFY</div><div class="d" lang="fr">quel document ? avec confiance et raisons</div><div class="d" lang="en">what is this? with confidence and reasons</div></div>
+      <div class="darrow">→</div>
+      <div class="dnode"><div class="t" lang="fr">EXTRAIRE</div><div class="t" lang="en">EXTRACT</div><div class="d" lang="fr">chaque valeur tracée à sa position sur la page</div><div class="d" lang="en">every value traced to its spot on the page</div></div>
+      <div class="darrow">→</div>
+      <div class="dnode"><div class="t" lang="fr">COMPARER</div><div class="t" lang="en">COMPARE</div><div class="d" lang="fr">contre votre système, ligne par ligne</div><div class="d" lang="en">against your system, line by line</div></div>
+      <div class="darrow">→</div>
+      <div class="dnode gate"><div class="t" lang="fr">PORTAIL HUMAIN</div><div class="t" lang="en">HUMAN GATE</div><div class="d" lang="fr">côte à côte · un clic · rien ne passe sans signature</div><div class="d" lang="en">side-by-side · one click · nothing posts unsigned</div></div>
+      <div class="darrow">→</div>
+      <div class="dnode sys"><div class="t" lang="fr">VOTRE SYSTÈME</div><div class="t" lang="en">YOUR SYSTEM</div><div class="d" lang="fr">ERP · TMS · gestion — avec preuve jointe</div><div class="d" lang="en">ERP · TMS · practice mgmt — evidence attached</div></div>
+    </div>
+    <div class="dlayer">
+      <div class="t" lang="fr">Couche de gouvernance — appliquée en code</div>
+      <div class="t" lang="en">Governance layer — enforced in code</div>
+      <div class="items">
+        <span lang="fr">◆ permissions par rôle</span><span lang="en">◆ role-tier permissions</span>
+        <span lang="fr">◆ budgets exécutoires</span><span lang="en">◆ hard budgets</span>
+        <span lang="fr">◆ journal d'audit chaîné</span><span lang="en">◆ hash-chained audit trail</span>
+        <span lang="fr">◆ caviardage avant persistance</span><span lang="en">◆ redaction before persistence</span>
+        <span lang="fr">◆ vérifications déterministes</span><span lang="en">◆ deterministic checks</span>
+      </div>
+    </div>
+  </div>
+  <p class="dia-cap" lang="fr">Déployé chez vous : vos documents ne quittent jamais vos serveurs — seuls des appels modèle caviardés et plafonnés sortent.</p>
+  <p class="dia-cap" lang="en">Deployed on your infrastructure: your documents never leave your servers — only redacted, budget-capped model calls exit.</p>
+</div></section>
+
+<section id="preuves"><div class="wrap">
+  <div class="planhead"><span class="plan-no">Plan Nº 03</span>
+    <h2 lang="fr">En production — pas en démonstration</h2>
+    <h2 lang="en">In production — not in demo</h2>
+  </div>
+  <p class="lead" lang="fr">Chez un courtier de transport montréalais, depuis mai 2026. Chiffres vérifiés dans la base de production.</p>
+  <p class="lead" lang="en">At a Montréal freight brokerage, since May 2026. Figures verified against the production database.</p>
+  <div class="nums">
+    <div class="num"><div class="v">3 368</div><div class="l" lang="fr">factures lues et vérifiées</div><div class="l" lang="en">invoices read and verified</div></div>
+    <div class="num"><div class="v">1,31 <span>M$</span></div><div class="l" lang="fr">traités en 59 jours</div><div class="l" lang="en">processed in 59 days</div></div>
+    <div class="num"><div class="v">80,9 <span>%</span></div><div class="l" lang="fr">sans aucune intervention</div><div class="l" lang="en">with zero human touches</div></div>
+    <div class="num"><div class="v">100 <span>%</span></div><div class="l" lang="fr">des sorties signées par un humain</div><div class="l" lang="en">of outputs human-signed</div></div>
+  </div>
+</div></section>
+
+<section id="cas"><div class="wrap">
+  <div class="planhead"><span class="plan-no">Plan Nº 04</span>
+    <h2 lang="fr">Même patron, autres documents</h2>
+    <h2 lang="en">Same pattern, different documents</h2>
+  </div>
+  <div class="cases">
+    <div class="case">
+      <div class="ch"><h3 lang="fr">Rapprochement de factures transporteurs</h3><h3 lang="en">Carrier invoice reconciliation</h3><span class="chip ok" lang="fr">Éprouvé</span><span class="chip ok" lang="en">Proven</span></div>
+      <div class="sector" lang="fr">Courtage · logistique · 3PL</div>
+      <div class="sector" lang="en">Brokerage · logistics · 3PL</div>
+      <p lang="fr">Factures lues ligne par ligne, comparées aux taux réservés, approbations préparées, preuves de livraison récupérées des portails.</p>
+      <p lang="en">Invoices read line by line, compared to booked rates, approvals staged, delivery proofs fetched from portals.</p>
+    </div>
+    <div class="case">
+      <div class="ch"><h3 lang="fr">Réception et suivi de dossiers</h3><h3 lang="en">Claims intake &amp; file tracking</h3><span class="chip pl" lang="fr">Conçu</span><span class="chip pl" lang="en">Designed</span></div>
+      <div class="sector" lang="fr">Juridique · recouvrement · assurance</div>
+      <div class="sector" lang="en">Legal · collections · insurance ops</div>
+      <p lang="fr">Dossiers déballés et vérifiés, délais surveillés par juridiction, correspondance bilingue préparée pour signature d'avocat.</p>
+      <p lang="en">Packages parsed and verified, deadlines watched per jurisdiction, bilingual correspondence drafted for lawyer signature.</p>
+    </div>
+    <div class="case">
+      <div class="ch"><h3 lang="fr">Comptes fournisseurs et clients</h3><h3 lang="en">AP / AR automation</h3><span class="chip pl" lang="fr">Conçu</span><span class="chip pl" lang="en">Designed</span></div>
+      <div class="sector" lang="fr">Distribution · manufacture · services</div>
+      <div class="sector" lang="en">Distribution · manufacturing · services</div>
+      <p lang="fr">Appariement à trois voies contre bons de commande et réceptions, exceptions pré-diagnostiquées, preuve jointe à chaque écriture.</p>
+      <p lang="en">Three-way match against POs and receipts, exceptions pre-diagnosed, evidence attached to every posting.</p>
+    </div>
+    <div class="case">
+      <div class="ch"><h3 lang="fr">Gouvernance d'agents IA</h3><h3 lang="en">AI agent governance</h3><span class="chip pl" lang="fr">Actif prêt</span><span class="chip pl" lang="en">Asset ready</span></div>
+      <div class="sector" lang="fr">Banques · assureurs · institutions réglementées</div>
+      <div class="sector" lang="en">Banks · insurers · regulated FIs</div>
+      <p lang="fr">Permissions, budgets et journaux infalsifiables ajoutés à vos agents — cartographiés sur OSFI E-23, avec essais plafonnés à l'appui.</p>
+      <p lang="en">Permissions, budgets and tamper-evident logs retrofitted onto your agents — mapped to OSFI E-23, with capped probe tests as evidence.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="methode"><div class="wrap">
+  <div class="planhead"><span class="plan-no">Plan Nº 05</span>
+    <h2 lang="fr">Comment on travaille</h2>
+    <h2 lang="en">How we work</h2>
+  </div>
+  <div class="method">
+    <div class="step">
+      <div class="n" lang="fr">Étape 1 · jours</div><div class="n" lang="en">Step 1 · days</div>
+      <h3 lang="fr">Sonder</h3><h3 lang="en">Probe</h3>
+      <p lang="fr">Un essai plafonné — des dizaines de dollars, pas des dizaines de milliers — sur un de vos vrais processus. Vous recevez la précision mesurée sur vos documents avant de vous engager.</p>
+      <p lang="en">A hard-capped trial — tens of dollars, not tens of thousands — on one of your real processes. You get measured accuracy on your documents before committing.</p>
+    </div>
+    <div class="step">
+      <div class="n" lang="fr">Étape 2 · semaines</div><div class="n" lang="en">Step 2 · weeks</div>
+      <h3 lang="fr">Construire</h3><h3 lang="en">Build</h3>
+      <p lang="fr">Portée fixe, sur vos serveurs, bilingue dès le premier jour. Nos trousses existantes font qu'un mandat démarre déjà construit à 60 %.</p>
+      <p lang="en">Fixed scope, on your infrastructure, bilingual from day one. Existing kits mean an engagement starts ~60% built.</p>
+    </div>
+    <div class="step">
+      <div class="n" lang="fr">Étape 3 · mensuel</div><div class="n" lang="en">Step 3 · monthly</div>
+      <h3 lang="fr">Opérer</h3><h3 lang="en">Operate</h3>
+      <p lang="fr">Précision suivie par source, rapports dans votre langue, nouveaux types de documents ajoutés au fil de l'eau.</p>
+      <p lang="en">Accuracy tracked per source, reports in your language, new document types added as they appear.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="quoteband"><div class="wrap">
+  <blockquote lang="fr">« Vos gens restent sur chaque dollar. Le système fait le <b>transport et la comparaison</b> — le jugement reste humain. »</blockquote>
+  <blockquote lang="en">"Your people stay on every dollar. The system does the <b>transport and comparison</b> — judgment stays human."</blockquote>
+  <p class="attr" lang="fr">Thanh-Huy Nguyen — fondateur, Montréal</p>
+  <p class="attr" lang="en">Thanh-Huy Nguyen — founder, Montréal</p>
+</div></section>
+
+<footer id="contact"><div class="wrap foot-grid">
+  <div class="foot-left">
+    <a class="logo" href="#">l'agenterie<i>.</i></a>
+    <p lang="fr">Automatisation gouvernée pour les entreprises canadiennes. Montréal, Québec.</p>
+    <p lang="en">Governed automation for Canadian enterprise. Montréal, Québec.</p>
+  </div>
+  <div class="foot-right">
+    <a href="#">bonjour@agenterie.ca</a><br>
+    <span lang="fr">Réponse en 24 h · FR / EN</span>
+    <span lang="en">Replies within 24h · FR / EN</span>
+  </div>
+</div></footer>
+
+</body>
+</html>
