@@ -13,6 +13,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://agenterie.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -257,6 +258,30 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
 @media (max-width:760px){
   .nums{ flex-direction:column; gap:26px; }
   .num{ border-right:0; padding:0; min-width:0; }
+}
+
+/* ---------- sector band : même mécanisme, autres processus ---------- */
+.sectors{
+  position:relative; padding:34px 0 40px; overflow:hidden;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.slabel{
+  text-align:center; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--org); font-weight:600; margin:0 0 20px;
+}
+.strack{ display:flex; width:max-content; animation:secmq 44s linear infinite; }
+.sectors:hover .strack{ animation-play-state:paused; }
+.sset{ display:flex; align-items:center; }
+.sitem{
+  font-family:var(--mono); font-size:14px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mut); white-space:nowrap; padding:0 14px;
+}
+.sdot{ color:var(--org); padding:0 4px; }
+@keyframes secmq{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){
+  .strack{ animation:none !important; width:auto; flex-wrap:wrap; justify-content:center; gap:8px 0; }
+  .sset{ flex-wrap:wrap; justify-content:center; gap:8px 0; }
+  .sset[aria-hidden]{ display:none; }
 }
 
 /* ---------- 05 : l'atelier ---------- */
@@ -505,6 +530,15 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
   <p class="src rv d3" lang="fr">Notre système de référence, en production 59+ jours chez un courtier de transport montréalais — non nommé par confidentialité. Chiffres vérifiés en base de production, 23 juillet 2026. ~2 $/mois de dépense modèle, plafonnée en code.</p>
   <p class="src rv d3" lang="en">Our reference system, in production 59+ days at a Montréal freight brokerage — unnamed for confidentiality. Figures verified against the production database, July 23, 2026. ~$2/month model spend, capped in code.</p>
 </section>
+
+
+<!-- même mécanisme, autres processus -->
+<div class="sectors">
+  <p class="slabel" lang="fr">Même mécanisme · autres processus</p>
+  <p class="slabel" lang="en">Same mechanism · different processes</p>
+  <div class="strack" lang="fr"><div class="sset"><span class="sitem">Courtage &amp; logistique</span><span class="sdot">◆</span><span class="sitem">Distribution</span><span class="sdot">◆</span><span class="sitem">Juridique &amp; recouvrement</span><span class="sdot">◆</span><span class="sitem">Assurance</span><span class="sdot">◆</span><span class="sitem">Finance réglementée</span><span class="sdot">◆</span><span class="sitem">Comptes fournisseurs</span><span class="sdot">◆</span><span class="sitem">Réclamations</span><span class="sdot">◆</span><span class="sitem">Courriels &amp; suivis</span><span class="sdot">◆</span><span class="sitem">Rapprochements</span><span class="sdot">◆</span><span class="sitem">Saisie de données</span><span class="sdot">◆</span></div><div class="sset" aria-hidden="true"><span class="sitem">Courtage &amp; logistique</span><span class="sdot">◆</span><span class="sitem">Distribution</span><span class="sdot">◆</span><span class="sitem">Juridique &amp; recouvrement</span><span class="sdot">◆</span><span class="sitem">Assurance</span><span class="sdot">◆</span><span class="sitem">Finance réglementée</span><span class="sdot">◆</span><span class="sitem">Comptes fournisseurs</span><span class="sdot">◆</span><span class="sitem">Réclamations</span><span class="sdot">◆</span><span class="sitem">Courriels &amp; suivis</span><span class="sdot">◆</span><span class="sitem">Rapprochements</span><span class="sdot">◆</span><span class="sitem">Saisie de données</span><span class="sdot">◆</span></div></div>
+  <div class="strack" lang="en"><div class="sset"><span class="sitem">Brokerage &amp; logistics</span><span class="sdot">◆</span><span class="sitem">Distribution</span><span class="sdot">◆</span><span class="sitem">Legal &amp; collections</span><span class="sdot">◆</span><span class="sitem">Insurance</span><span class="sdot">◆</span><span class="sitem">Regulated finance</span><span class="sdot">◆</span><span class="sitem">Accounts payable</span><span class="sdot">◆</span><span class="sitem">Claims</span><span class="sdot">◆</span><span class="sitem">Email &amp; follow-ups</span><span class="sdot">◆</span><span class="sitem">Reconciliations</span><span class="sdot">◆</span><span class="sitem">Data entry</span><span class="sdot">◆</span></div><div class="sset" aria-hidden="true"><span class="sitem">Brokerage &amp; logistics</span><span class="sdot">◆</span><span class="sitem">Distribution</span><span class="sdot">◆</span><span class="sitem">Legal &amp; collections</span><span class="sdot">◆</span><span class="sitem">Insurance</span><span class="sdot">◆</span><span class="sitem">Regulated finance</span><span class="sdot">◆</span><span class="sitem">Accounts payable</span><span class="sdot">◆</span><span class="sitem">Claims</span><span class="sdot">◆</span><span class="sitem">Email &amp; follow-ups</span><span class="sdot">◆</span><span class="sitem">Reconciliations</span><span class="sdot">◆</span><span class="sitem">Data entry</span><span class="sdot">◆</span></div></div>
+</div>
 
 <!-- 05 : l'atelier -->
 <section class="ch" id="atelier">
