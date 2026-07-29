@@ -3,356 +3,783 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agenterie — Automatisation gouvernée pour les entreprises canadiennes</title>
-<meta name="description" content="Systèmes d'IA pour vos processus documentaires : chaque action journalisée, chaque budget plafonné, rien ne passe sans approbation humaine. Montréal.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231F547A'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='white' font-family='Georgia'>a</text></svg>">
-<meta property="og:title" content="Agenterie — Automatisation gouvernée">
-<meta property="og:description" content="L'automatisation pour les opérations qui n'ont pas droit à l'erreur. Livré en semaines. Hébergé chez vous.">
+<title>Agenterie — Solutions agentiques gouvernées pour les entreprises canadiennes</title>
+<meta name="description" content="Nous mettons en place des solutions agentiques de bout en bout — chaque action journalisée, chaque budget plafonné, rien ne passe sans approbation humaine. Montréal.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231F1B15'/><path d='M82 62 V82 H18 V18 H82 V38' fill='none' stroke='%23F1EAE0' stroke-width='11'/><rect x='62' y='39' width='28' height='22' fill='%23E4572E'/></svg>">
+<meta property="og:title" content="Agenterie — Solutions agentiques gouvernées">
+<meta property="og:description" content="Des agents qui travaillent de bout en bout — audités, plafonnés, approuvés par vos gens. Livré en semaines. Hébergé chez vous.">
 <meta property="og:url" content="https://agenterie.ca">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   AGENTERIE v14 — « Du chaos à l'ordre, sous votre signature »
+   One persistent object, scroll-driven. Cream · charcoal · orange.
+   ============================================================ */
+:root{
+  --paper:  #F1EAE0;
+  --paper2: #E7DFD2;
+  --card:   #FBF7EF;
+  --stone:  #C7BCAB;
+  --ink:    #1F1B15;
+  --mut:    #7A7264;
+  --line:   rgba(31,27,21,.13);
+  --line2:  rgba(31,27,21,.26);
+  --org:    #E4572E;
+  --org-d:  #C24623;
+  --org-glow: rgba(228,87,46,.15);
+  --sans: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bgflow: #F1EAE0;   /* the page tone — eased per chapter by JS */
+}
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0; background:var(--bgflow); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  transition:background-color 1.2s ease;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+a{ color:inherit; }
+:focus-visible{ outline:2px solid var(--org); outline-offset:3px; }
+
+body.en [lang="fr"]{ display:none !important; }
+body:not(.en) [lang="en"]{ display:none !important; }
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky; top:0; z-index:60;
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  transform:translateZ(0);
+}
+.nav-in{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding:13px 0; }
+.logo{ display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:700; font-size:17.5px; letter-spacing:-.02em; justify-self:start; }
+.logo svg{ width:25px; height:25px; }
+.nav-links{ display:flex; gap:6px; justify-self:center; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+.nav-links a{ color:var(--mut); text-decoration:none; padding:6px 10px; }
+.nav-links a:hover{ color:var(--ink); background:var(--paper2); }
+.nav-right{ display:flex; align-items:center; gap:10px; justify-self:end; }
+.lang{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.06em;
+  border:1px solid var(--line2); background:transparent; color:var(--mut);
+  height:34px; display:inline-flex; align-items:center; padding:0 12px;
+  cursor:pointer; text-transform:uppercase;
+}
+.lang:hover{ border-color:var(--ink); color:var(--ink); }
+.btn{
+  font-size:16px; font-weight:600; text-decoration:none; display:inline-block;
+  padding:13px 24px; border:1px solid transparent; cursor:pointer;
+  background:var(--org); color:#fff;
+  transition:background .15s;
+  transform:translateZ(0); backface-visibility:hidden;
+}
+.btn:hover{ background:var(--org-d); }
+nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16px; font-size:14px; }
+@media (max-width:920px){ .nav-links, nav .nav-cta{ display:none; } .nav-in{ grid-template-columns:1fr auto; } }
+
+/* ---------- shared chapter styles ---------- */
+.ch{
+  position:relative; min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:96px 24px; overflow:hidden;
+}
+.glow{
+  position:absolute; width:72vw; height:64vh; max-width:900px; pointer-events:none;
+  background:radial-gradient(closest-side, var(--org-glow), transparent 72%);
+}
+.marker{
+  position:relative; font-family:var(--mono); font-size:11.5px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--org); font-weight:600; margin:0 0 22px;
+}
+.ch h1, .ch h2, .beat h1, .beat h2{
+  position:relative; font-size:clamp(1.9rem, 4.4vw, 3rem); line-height:1.12;
+  letter-spacing:-.03em; font-weight:700; margin:0 0 18px; max-width:21ch; text-wrap:balance;
+}
+.ch .cap, .beat .cap{
+  position:relative; font-size:16px; color:var(--mut); max-width:46ch; margin:0; line-height:1.7;
+}
+.cap b{ color:var(--ink); font-weight:600; }
+.cap .o{ color:var(--org); font-weight:600; }
+.ch .src{
+  position:relative; font-family:var(--mono); font-size:10.5px; letter-spacing:.05em;
+  color:var(--mut); opacity:.75; margin:18px 0 0; line-height:1.8; max-width:64ch;
+}
+.rv{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease; }
+.ch.on .rv{ opacity:1; transform:none; }
+.rv.d1{ transition-delay:.1s; } .rv.d2{ transition-delay:.22s; } .rv.d3{ transition-delay:.34s; }
+
+/* the recurring card */
+.fac{
+  background:var(--card); border:1px solid var(--line2);
+  box-shadow:0 1px 2px rgba(31,27,21,.06), 0 14px 34px rgba(31,27,21,.10);
+  padding:14px 14px 12px; text-align:left;
+}
+.fac .fh{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:8px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mut); border-bottom:1px solid var(--line); padding-bottom:6px; margin-bottom:8px;
+}
+.fac .fl{ height:5px; background:var(--line); margin:6px 0; }
+.fac .fl.w60{ width:60%; } .fac .fl.w80{ width:80%; } .fac .fl.w45{ width:45%; }
+.fac .ft{ display:flex; justify-content:flex-end; margin-top:10px; }
+.fac .ft i{ font-style:normal; font-family:var(--mono); font-size:9px; color:var(--ink); border-top:1px solid var(--line2); padding-top:4px; }
+
+/* ---------- acts 01–02 : the scroll-driven object ---------- */
+.story-wrap{ position:relative; height:340vh; }
+@media (max-width:880px){ .story-wrap{ height:300vh; } }
+.story{
+  position:sticky; top:0; height:100svh; overflow:hidden;
+}
+.story .glow{ left:-16vw; top:16vh; }
+#obj{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.beat{
+  position:absolute; right:6%; top:50%; transform:translateY(-50%);
+  width:min(430px, 42vw); text-align:left; opacity:0; pointer-events:none;
+  transition:opacity .45s ease;
+}
+.beat .marker{ margin-bottom:18px; }
+.beat h1, .beat h2{ max-width:14ch; }
+.beat.show{ opacity:1; }
+.scroll-hint{
+  position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mut); opacity:.65; transition:opacity .4s ease;
+}
+.scroll-hint::after{ content:"↓"; margin-left:8px; }
+.story.scrolled .scroll-hint{ opacity:0; }
+@media (max-width:880px){
+  .beat{
+    left:0; right:0; top:auto; bottom:0; transform:none; width:auto; text-align:center;
+    padding:80px 24px 7svh;
+    background:linear-gradient(to bottom, transparent, var(--bgflow) 26%);
+  }
+  .beat h1, .beat h2{ margin-left:auto; margin-right:auto; }
+  .beat .cap{ margin-left:auto; margin-right:auto; }
+}
+
+/* ---------- 03 : le portail (pinned, interactive) ---------- */
+.pin-wrap{ position:relative; height:185vh; margin-top:-34vh; z-index:2; }
+@media (max-width:880px){ .pin-wrap{ height:140vh; } }
+.pin{
+  position:sticky; top:0; height:100svh; overflow:hidden;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px 40px;
+  background:var(--bgflow); transition:background-color 1.2s ease;
+}
+.pin .glow{ top:22vh; }
+.gate-scene{ position:relative; width:min(680px, 92vw); height:240px; margin:34px 0 8px; }
+.threshold{ position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--line2); }
+.gate-frame{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:150px; height:190px; border:3px solid var(--ink);
+}
+.gate-frame::after{
+  content:""; position:absolute; right:-5px; top:34px; bottom:34px; width:7px;
+  background:var(--bgflow); transition:background-color 1.2s ease;
+}
+.gate-doc{
+  position:absolute; top:50%; width:130px; margin-top:-74px; left:1%;
+  transition:left .6s cubic-bezier(.5,0,.3,1), opacity .45s ease, transform .5s ease;
+}
+.gate-doc .fac{ width:130px; }
+.gate-doc.s0{ left:29%; opacity:1; transform:none; z-index:3; }
+.gate-doc.s1{ left:14%; opacity:.65; transform:scale(.93); z-index:2; }
+.gate-doc.s2{ left:1%; opacity:.4; transform:scale(.86); z-index:1; }
+.gate-doc.pass{ left:86%; opacity:0; z-index:4; transition:left .7s cubic-bezier(.5,0,.3,1), opacity .35s ease .55s, transform .5s ease; }
+.stamp{
+  position:absolute; top:-16px; right:-16px; width:44px; height:44px; border-radius:50%;
+  background:var(--org); display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:scale(.3);
+}
+.stamp svg{ width:22px; height:22px; }
+.gate-doc.pass .stamp{ animation:stamppop .5s cubic-bezier(.2,1.4,.4,1) forwards; }
+@keyframes stamppop{ to{ opacity:1; transform:scale(1); } }
+.approve-row{ position:relative; margin-top:8px; min-height:92px; }
+.btn.approve{ font-size:17px; padding:15px 32px; }
+.btn.approve[disabled]{ opacity:.35; cursor:default; background:var(--org); }
+.sig{
+  font-family:var(--mono); font-size:11.5px; color:var(--mut); letter-spacing:.04em;
+  margin:16px 0 0; opacity:0; transition:opacity .5s ease .5s;
+}
+.sig b{ color:var(--org); font-weight:600; }
+.pin.approved .sig{ opacity:1; }
+.pin-hint{
+  font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mut); opacity:.6; margin-top:18px;
+}
+.pin.approved .pin-hint{ opacity:0; }
+
+/* ---------- 04 : l'audit ---------- */
+#audit .glow{ bottom:-20vh; }
+.chain{
+  position:relative; display:flex; align-items:center; gap:0; margin:40px 0 8px;
+  flex-wrap:wrap; justify-content:center;
+}
+.chain .fac{ width:104px; padding:9px 9px 8px; }
+.chain .fac .fh{ font-size:6.5px; padding-bottom:4px; margin-bottom:5px; }
+.chain .fac .fl{ height:4px; margin:5px 0; }
+.chain .fac .ft i{ font-size:7.5px; color:var(--org); border-top:none; padding-top:2px; }
+.chain .lnk{
+  font-family:var(--mono); font-size:10px; color:var(--mut); padding:0 12px;
+  display:flex; align-items:center; gap:6px;
+}
+.chain .lnk::before{ content:""; width:26px; height:1px; background:var(--line2); }
+.chain .lnk::after{ content:""; width:26px; height:1px; background:var(--line2); }
+@media (max-width:700px){ .chain .lnk::before, .chain .lnk::after{ width:10px; } .chain .lnk{ padding:0 6px; } }
+.nums{ position:relative; display:flex; margin-top:40px; flex-wrap:wrap; justify-content:center; }
+.num{ padding:10px 44px; border-right:1px solid var(--line2); min-width:200px; }
+.num:last-child{ border-right:0; }
+.num .v{ font-weight:800; font-size:clamp(2rem,4vw,2.9rem); letter-spacing:-.03em; line-height:1.1; }
+.num .v span{ font-size:.55em; color:var(--org); font-weight:700; }
+.num .l{ font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); margin-top:8px; line-height:1.7; }
+@media (max-width:760px){
+  .nums{ flex-direction:column; gap:26px; }
+  .num{ border-right:0; padding:0; min-width:0; }
+}
+
+/* ---------- 05 : votre premier processus ---------- */
+#contact .glow{ top:10vh; }
+.your-fac{ position:relative; margin:0 0 34px; }
+.your-fac .fac{
+  width:180px; border-style:dashed; border-color:var(--line2); box-shadow:none;
+  background:color-mix(in srgb, var(--card) 55%, transparent);
+  animation:floaty 6s ease-in-out infinite;
+}
+@keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+.your-fac .fac .fh{ color:var(--org); }
+#contact .btn{ margin-top:26px; font-size:17px; padding:15px 30px; }
+
+/* ---------- footer ---------- */
+footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2; }
+.foot-in{ display:flex; justify-content:space-between; align-items:flex-start; gap:30px; flex-wrap:wrap; padding:52px 0 56px; }
+.foot-left .logo{ color:var(--paper); }
+.foot-left p{ font-size:14px; color:rgba(241,234,224,.55); max-width:40ch; margin:12px 0 0; }
+.leaf{ width:13px; height:13px; vertical-align:-1.5px; margin:0 1px 0 3px; }
+.foot-right{ font-family:var(--mono); font-size:12.5px; color:rgba(241,234,224,.7); text-align:right; line-height:2.2; }
+.foot-right a{ color:#F0906B; text-decoration:none; }
+.foot-right a:hover{ text-decoration:underline; }
+@media (max-width:700px){ .foot-right{ text-align:left; } }
+
+/* ---------- intro : bars sweeping across, then reveal ---------- */
+.intro{
+  position:fixed; inset:0; z-index:120; background:var(--paper);
+  overflow:hidden; transition:opacity .5s ease;
+}
+.intro .bar{
+  position:absolute; left:0; top:var(--y); height:6.5vh; width:var(--w);
+  background:var(--c); transform:translateX(-110%);
+  animation:barsweep var(--t) cubic-bezier(.7,0,.3,1) var(--d) forwards;
+}
+@keyframes barsweep{ to{ transform:translateX(110vw); } }
+.intro .intro-mark{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:flex; align-items:center; gap:10px;
+  font-weight:700; font-size:19px; letter-spacing:-.02em; color:var(--ink);
+  opacity:0; animation:markin .5s ease .25s forwards;
+}
+.intro .intro-mark svg{ width:28px; height:28px; }
+@keyframes markin{ to{ opacity:1; } }
+.intro.done{ opacity:0; pointer-events:none; }
+@media (prefers-reduced-motion: reduce){ .intro{ display:none; } }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; animation:none !important; }
+  .rv{ opacity:1 !important; transform:none !important; }
+  .story-wrap{ height:auto; }
+  .story{ position:static; height:auto; min-height:100svh; }
+  .beat{ position:static; transform:none; opacity:1; width:auto; max-width:520px; margin:26px auto; text-align:center; pointer-events:auto; }
+  .beat h1, .beat h2, .beat .cap{ margin-left:auto; margin-right:auto; }
+  #obj{ position:static; height:46svh; }
+  .scroll-hint{ display:none; }
+  .pin-wrap{ height:auto; margin-top:0; }
+  .pin{ position:static; height:auto; min-height:100svh; }
+  .gate-doc.pass .stamp{ opacity:1; transform:scale(1); }
+}
+@media print{ .rv, .beat{ opacity:1 !important; transform:none !important; } }
+</style>
+<noscript><style>
+.intro{display:none}
+.rv{opacity:1 !important;transform:none !important}
+.story-wrap{height:auto}.story{position:static;height:auto}
+.beat{position:static;transform:none;opacity:1;width:auto;max-width:520px;margin:40px auto;text-align:center}
+#obj{display:none}.scroll-hint{display:none}
+</style></noscript>
 </head>
 <body>
-<style>
-  /* AGENTERIE v2 — blueprint style, business content. Committed light world. */
-  :root {
-    color-scheme: light;
-    --paper:   #F6F5F1;
-    --board:   #FFFFFF;
-    --grid:    rgba(31,84,122,.05);
-    --ink:     #22282C;
-    --ink-2:   #59636E;
-    --ink-3:   #8B939D;
-    --line:    #D6D7D0;
-    --plan:    #1F547A;
-    --plan-bg: #EAF0F5;
-    --stamp:   #B04A2A;
-    --stamp-bg:#F5E7E1;
-    --ok:      #2F7D57;
-    --ok-bg:   #E9F2EC;
-    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
-    --serif: Georgia, "Iowan Old Style", serif;
-    --sans: -apple-system, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
-  }
-  :root[data-theme="dark"], :root[data-theme="light"] {
-    color-scheme: light;
-    --paper:#F6F5F1; --board:#FFFFFF; --grid:rgba(31,84,122,.05);
-    --ink:#22282C; --ink-2:#59636E; --ink-3:#8B939D; --line:#D6D7D0;
-    --plan:#1F547A; --plan-bg:#EAF0F5; --stamp:#B04A2A; --stamp-bg:#F5E7E1;
-    --ok:#2F7D57; --ok-bg:#E9F2EC;
-  }
-  * { box-sizing:border-box; }
-  body {
-    margin:0; color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62;
-    background:
-      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 28px),
-      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 28px),
-      var(--paper);
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
-  body.en [lang="fr"] { display:none !important; }
-  body:not(.en) [lang="en"] { display:none !important; }
 
-  nav { position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter:blur(8px); border-bottom:1.5px solid var(--ink); }
-  .nav-in { display:flex; align-items:center; gap:26px; padding:14px 0; }
-  .logo { font-family:var(--serif); font-weight:700; font-size:20px; color:var(--ink); text-decoration:none; }
-  .logo i { font-style:normal; color:var(--stamp); }
-  .nav-links { display:flex; gap:22px; margin-left:auto; font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
-  .nav-links a { color:var(--ink-2); text-decoration:none; }
-  .nav-links a:hover { color:var(--plan); }
-  .lang { margin-left:8px; font-family:var(--mono); font-size:11.5px; border:1px solid var(--ink); background:var(--board); color:var(--ink); padding:5px 10px; cursor:pointer; }
-  @media (max-width:760px){ .nav-links { display:none; } }
-
-  header.hero { padding:76px 0 56px; }
-  .titleblock { border:1.5px solid var(--ink); background:var(--board); }
-  .tb-top { padding:34px 36px 28px; border-bottom:1.5px solid var(--ink); }
-  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--plan); margin:0 0 16px; }
-  h1 { font-family:var(--serif); font-size:clamp(1.9rem,5vw,3.1rem); line-height:1.08; letter-spacing:-.02em; font-weight:700; margin:0 0 16px; max-width:22ch; text-wrap:balance; }
-  h1 em { font-style:italic; color:var(--plan); }
-  .hero .sub { font-size:17.5px; color:var(--ink-2); max-width:60ch; margin:0; }
-  .tb-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
-  .tbf { padding:12px 20px; border-right:1px solid var(--line); font-family:var(--mono); }
-  .tbf:last-child { border-right:0; }
-  .tbf .k { font-size:9px; text-transform:uppercase; letter-spacing:.13em; color:var(--ink-3); display:block; }
-  .tbf .v { font-size:12.5px; }
-  @media (max-width:640px){ .tbf { border-right:0; border-top:1px solid var(--line); } }
-  .cta-row { display:flex; gap:14px; flex-wrap:wrap; margin-top:24px; }
-  .btn { font-family:var(--mono); font-size:13px; text-decoration:none; padding:12px 22px; border:1.5px solid var(--ink); color:var(--ink); background:var(--board); }
-  .btn.primary { background:var(--ink); color:var(--paper); font-weight:700; }
-  .btn.primary:hover { background:var(--plan); border-color:var(--plan); }
-  .btn:hover { border-color:var(--plan); color:var(--plan); }
-
-  section { padding:60px 0; }
-  .planhead { display:flex; align-items:baseline; gap:16px; border-bottom:1.5px solid var(--ink); padding-bottom:10px; margin-bottom:26px; }
-  .plan-no { font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--plan); text-transform:uppercase; white-space:nowrap; }
-  h2 { font-family:var(--serif); font-size:clamp(1.4rem,3.1vw,1.95rem); letter-spacing:-.02em; font-weight:700; margin:0; text-wrap:balance; }
-  .lead { font-size:17px; color:var(--ink-2); max-width:64ch; }
-
-  .walls { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
-  @media (max-width:720px){ .walls { grid-template-columns:1fr; } }
-  .wall { border:1px solid var(--ink); background:var(--board); padding:20px 22px; }
-  .wall .q { font-family:var(--serif); font-style:italic; font-size:16.5px; margin:0 0 8px; }
-  .wall .a { font-size:13.5px; color:var(--ink-2); margin:0; }
-  .wall .a b { color:var(--ok); }
-
-  .dia { border:1.5px solid var(--ink); background:var(--board); padding:24px; margin:26px 0 8px; overflow-x:auto; }
-  .dia-cap { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin:0 0 8px; line-height:1.6; }
-  .drow { display:flex; align-items:stretch; min-width:700px; }
-  .dnode { border:1.5px solid var(--ink); background:var(--board); padding:11px 13px; flex:1; min-width:0; }
-  .dnode .t { font-family:var(--mono); font-size:11.5px; font-weight:700; }
-  .dnode .d { font-size:11.5px; color:var(--ink-2); margin-top:3px; line-height:1.45; }
-  .dnode.src { border-style:dashed; border-color:var(--ink-3); }
-  .dnode.gate { border-color:var(--stamp); border-width:2px; background:var(--stamp-bg); }
-  .dnode.gate .t { color:var(--stamp); }
-  .dnode.sys { background:var(--plan-bg); }
-  .darrow { display:flex; align-items:center; padding:0 5px; color:var(--plan); font-family:var(--mono); font-size:14px; flex:none; }
-  .dlayer { border:1.5px solid var(--plan); background:var(--plan-bg); padding:11px 15px; margin-top:12px; min-width:700px; }
-  .dlayer .t { font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--plan); letter-spacing:.08em; text-transform:uppercase; }
-  .dlayer .items { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:7px; font-family:var(--mono); font-size:11px; color:var(--ink-2); }
-
-  .nums { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:28px; }
-  @media (max-width:760px){ .nums { grid-template-columns:repeat(2,1fr); } }
-  .num { border:1px solid var(--ink); background:var(--board); padding:20px; }
-  .num .v { font-family:var(--mono); font-size:26px; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums; color:var(--plan); }
-  .num .v span { font-size:14px; color:var(--ink-3); }
-  .num .l { margin-top:7px; font-size:12.5px; color:var(--ink-2); line-height:1.45; }
-
-  .cases { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px; }
-  @media (max-width:820px){ .cases { grid-template-columns:1fr; } }
-  .case { border:1px solid var(--ink); background:var(--board); padding:22px; }
-  .case .ch { display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:4px; }
-  .case h3 { font-family:var(--serif); font-size:18px; font-weight:700; margin:0; }
-  .case .sector { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
-  .case p { font-size:13.5px; color:var(--ink-2); margin:0; }
-  .chip { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:.1em; padding:2px 7px; border:1px solid currentColor; white-space:nowrap; }
-  .chip.ok { color:var(--ok); background:var(--ok-bg); }
-  .chip.pl { color:var(--plan); background:var(--plan-bg); }
-
-  .method { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
-  @media (max-width:820px){ .method { grid-template-columns:1fr; } }
-  .step { border:1px solid var(--ink); background:var(--board); padding:22px; }
-  .step .n { font-family:var(--mono); font-size:10px; color:var(--stamp); letter-spacing:.12em; text-transform:uppercase; margin-bottom:10px; }
-  .step h3 { font-family:var(--serif); font-size:18.5px; margin:0 0 8px; }
-  .step p { font-size:13.5px; color:var(--ink-2); margin:0; }
-
-  .quoteband { border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); background:var(--board); }
-  .quoteband blockquote { margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.15rem,2.5vw,1.5rem); max-width:36ch; line-height:1.4; }
-  .quoteband blockquote b { color:var(--stamp); font-style:normal; }
-  .quoteband .attr { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-top:14px; }
-
-  footer { padding:50px 0 70px; }
-  .foot-grid { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
-  .foot-left p { font-size:13.5px; color:var(--ink-3); max-width:40ch; margin:10px 0 0; }
-  .foot-right { font-family:var(--mono); font-size:13px; color:var(--ink-2); text-align:right; line-height:2; }
-  .foot-right a { color:var(--ink); }
-  .mock { position:fixed; bottom:14px; right:14px; z-index:20; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; background:var(--stamp); color:#FFF; padding:5px 10px; font-weight:700; }
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-</style>
+<div class="intro" id="intro" aria-hidden="true">
+  <span class="bar" style="--y:12%; --w:54vw; --c:#1F1B15; --t:.95s; --d:.05s"></span>
+  <span class="bar" style="--y:28%; --w:32vw; --c:#E4572E; --t:1.1s; --d:.14s"></span>
+  <span class="bar" style="--y:44%; --w:70vw; --c:#C7BCAB; --t:.85s; --d:.22s"></span>
+  <span class="bar" style="--y:60%; --w:42vw; --c:#1F1B15; --t:1.05s; --d:.30s"></span>
+  <span class="bar" style="--y:76%; --w:60vw; --c:#E7DFD2; --t:.9s; --d:.38s"></span>
+  <div class="intro-mark">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M86 64 V86 H14 V14 H86 V36" fill="none" stroke="#1F1B15" stroke-width="13"/>
+      <rect x="64" y="37" width="30" height="26" fill="#E4572E"/>
+    </svg>
+    agenterie
+  </div>
+</div>
 
 <nav><div class="wrap nav-in">
-  <a class="logo" href="#">l'agenterie<i>.</i></a>
+  <a class="logo" href="#">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M86 64 V86 H14 V14 H86 V36" fill="none" stroke="#1F1B15" stroke-width="13"/>
+      <rect x="64" y="37" width="30" height="26" fill="#E4572E"/>
+    </svg>
+    agenterie
+  </a>
   <div class="nav-links">
-    <a href="#probleme" lang="fr">Le problème</a><a href="#probleme" lang="en">The problem</a>
-    <a href="#archi" lang="fr">L'architecture</a><a href="#archi" lang="en">Architecture</a>
-    <a href="#preuves" lang="fr">Preuves</a><a href="#preuves" lang="en">Proof</a>
-    <a href="#cas" lang="fr">Cas d'usage</a><a href="#cas" lang="en">Use cases</a>
+    <a href="#portail" lang="fr">Le portail</a><a href="#portail" lang="en">The gate</a>
+    <a href="#audit" lang="fr">L'audit</a><a href="#audit" lang="en">The audit</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="lang" onclick="document.body.classList.toggle('en')"><span lang="fr">EN</span><span lang="en">FR</span></button>
+  <div class="nav-right">
+    <button class="lang" id="langbtn" aria-label="Switch language"><span lang="fr">EN</span><span lang="en">FR</span></button>
+    <a class="btn nav-cta" href="#contact" lang="fr">Parler d'un processus</a>
+    <a class="btn nav-cta" href="#contact" lang="en">Discuss a process</a>
+  </div>
 </div></nav>
 
-<header class="hero"><div class="wrap">
-  <div class="titleblock">
-    <div class="tb-top">
-      <p class="kicker" lang="fr">Automatisation gouvernée · Montréal</p>
-      <p class="kicker" lang="en">Governed automation · Montréal</p>
-      <h1 lang="fr">L'automatisation pour les opérations qui n'ont pas <em>droit à l'erreur</em>.</h1>
-      <h1 lang="en">Automation for operations that <em>can't afford surprises</em>.</h1>
-      <p class="sub" lang="fr">Vos documents — factures, réclamations, courriels — traités par des systèmes d'IA où chaque action est journalisée, chaque budget plafonné en code, et où rien n'atteint vos systèmes sans approbation humaine. Livré en semaines. Hébergé chez vous.</p>
-      <p class="sub" lang="en">Your documents — invoices, claims, email — processed by AI systems where every action is logged, every budget is enforced in code, and nothing reaches your systems without human approval. Delivered in weeks. Hosted on your infrastructure.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#contact" lang="fr">Parler d'un processus</a>
-        <a class="btn primary" href="#contact" lang="en">Discuss a process</a>
-        <a class="btn" href="#archi" lang="fr">Voir l'architecture</a>
-        <a class="btn" href="#archi" lang="en">See the architecture</a>
-      </div>
-    </div>
-    <div class="tb-fields">
-      <div class="tbf"><span class="k" lang="fr">En production</span><span class="k" lang="en">In production</span><span class="v" lang="fr">59+ jours · 1,31 M$ traités</span><span class="v" lang="en">59+ days · $1.31M processed</span></div>
-      <div class="tbf"><span class="k" lang="fr">Contrôle</span><span class="k" lang="en">Control</span><span class="v" lang="fr">100 % approuvé par un humain</span><span class="v" lang="en">100% human-approved</span></div>
-      <div class="tbf"><span class="k" lang="fr">Langues</span><span class="k" lang="en">Languages</span><span class="v">FR / EN</span></div>
-      <div class="tbf"><span class="k" lang="fr">Conformité</span><span class="k" lang="en">Compliance</span><span class="v">OSFI E-23 · SOC 2 · ISO 42001</span></div>
-    </div>
-  </div>
-</div></header>
+<!-- acts 01–02 : one object, chaos → order -->
+<div class="story-wrap" id="storywrap"><div class="story" id="story">
+  <div class="glow"></div>
+  <canvas id="obj" aria-hidden="true"></canvas>
 
-<section id="probleme"><div class="wrap">
-  <div class="planhead"><span class="plan-no">Plan Nº 01</span>
-    <h2 lang="fr">Les quatre questions que vous vous posez déjà</h2>
-    <h2 lang="en">The four questions you're already asking</h2>
+  <div class="beat" id="beat1">
+    <p class="marker">01 · <span lang="fr">Le constat</span><span lang="en">The starting point</span></p>
+    <h1 lang="fr">Vos équipes passent leurs journées sur des tâches qui se répètent.</h1>
+    <h1 lang="en">Your teams spend their days on work that repeats itself.</h1>
+    <p class="cap" lang="fr">Factures, courriels, saisies, rapprochements, suivis — le travail qui use vos meilleures personnes, une pièce à la fois.</p>
+    <p class="cap" lang="en">Invoices, email, data entry, reconciliations, follow-ups — the work that wears down your best people, one piece at a time.</p>
   </div>
-  <div class="walls">
-    <div class="wall">
-      <p class="q" lang="fr">« Que se passe-t-il quand l'IA se trompe et que personne ne s'en aperçoit ? »</p>
-      <p class="q" lang="en">"What happens when the AI is wrong and nobody notices?"</p>
-      <p class="a" lang="fr"><b>Notre réponse :</b> la précision est mesurée en continu, par source, et rapportée. Les cas incertains arrivent pré-diagnostiqués dans une file d'exceptions — jamais en silence.</p>
-      <p class="a" lang="en"><b>Our answer:</b> accuracy is measured continuously, per source, and reported. Uncertain cases arrive pre-diagnosed in an exception queue — never silently.</p>
-    </div>
-    <div class="wall">
-      <p class="q" lang="fr">« Rien ne doit être transmis à nos systèmes sans un humain. »</p>
-      <p class="q" lang="en">"Nothing posts to our systems without a human."</p>
-      <p class="a" lang="fr"><b>Notre réponse :</b> c'est l'architecture, pas une option. Le portail d'approbation est le seul chemin vers votre système de gestion — un clic, une signature, une trace.</p>
-      <p class="a" lang="en"><b>Our answer:</b> that's the architecture, not a setting. The approval gate is the only path into your system of record — one click, one signature, one trace.</p>
-    </div>
-    <div class="wall">
-      <p class="q" lang="fr">« Pouvez-vous prouver, après coup, exactement ce qui a été fait ? »</p>
-      <p class="q" lang="en">"Can you prove, afterwards, exactly what was done?"</p>
-      <p class="a" lang="fr"><b>Notre réponse :</b> chaque action vit dans un journal chaîné par hachage — rejouable, vérifiable, infalsifiable. Votre vérificateur peut le rejouer ligne par ligne.</p>
-      <p class="a" lang="en"><b>Our answer:</b> every action lives in a hash-chained log — replayable, verifiable, tamper-evident. Your auditor can replay it line by line.</p>
-    </div>
-    <div class="wall">
-      <p class="q" lang="fr">« Qu'est-ce qui empêche ça de brûler de l'argent sans fin ? »</p>
-      <p class="q" lang="en">"What stops this from burning money forever?"</p>
-      <p class="a" lang="fr"><b>Notre réponse :</b> des plafonds appliqués en code — pas des tableaux de bord. Notre système de référence traite 1,31 M$ de documents pour ~2 $/mois de dépense modèle.</p>
-      <p class="a" lang="en"><b>Our answer:</b> caps enforced in code — not dashboards. Our reference system processes $1.31M in documents on ~$2/month of model spend.</p>
-    </div>
-  </div>
-</div></section>
 
-<section id="archi"><div class="wrap">
-  <div class="planhead"><span class="plan-no">Plan Nº 02</span>
-    <h2 lang="fr">L'architecture de référence</h2>
-    <h2 lang="en">The reference architecture</h2>
+  <div class="beat" id="beat2">
+    <p class="marker">02 · <span lang="fr">La mise en place</span><span lang="en">The build</span></p>
+    <h2 lang="fr">Nous mettons en place des agents qui font ce travail — de bout en bout.</h2>
+    <h2 lang="en">We put agents in place that do this work — end to end.</h2>
+    <p class="cap" lang="fr">Conçus pour <b>vos</b> processus, livrés <b>en semaines</b>, hébergés chez vous — <b>vos données restent au Canada</b>. Chaque action journalisée, chaque budget plafonné en code.</p>
+    <p class="cap" lang="en">Designed for <b>your</b> processes, delivered <b>in weeks</b>, hosted on your servers — <b>your data stays in Canada</b>. Every action logged, every budget capped in code.</p>
   </div>
-  <p class="lead" lang="fr">Un seul patron : les documents avancent vers votre système de gestion, mais tout passe par le portail d'approbation humain, et tout repose sur une couche de gouvernance qui est du code — pas une politique.</p>
-  <p class="lead" lang="en">One pattern: documents flow toward your system of record, but everything passes through the human approval gate, and everything rests on a governance layer that is code — not policy.</p>
-  <div class="dia">
-    <div class="drow">
-      <div class="dnode src"><div class="t">SOURCES</div><div class="d" lang="fr">boîte courriel · portails · documents</div><div class="d" lang="en">shared inbox · portals · documents</div></div>
-      <div class="darrow">→</div>
-      <div class="dnode"><div class="t" lang="fr">CLASSER</div><div class="t" lang="en">CLASSIFY</div><div class="d" lang="fr">quel document ? avec confiance et raisons</div><div class="d" lang="en">what is this? with confidence and reasons</div></div>
-      <div class="darrow">→</div>
-      <div class="dnode"><div class="t" lang="fr">EXTRAIRE</div><div class="t" lang="en">EXTRACT</div><div class="d" lang="fr">chaque valeur tracée à sa position sur la page</div><div class="d" lang="en">every value traced to its spot on the page</div></div>
-      <div class="darrow">→</div>
-      <div class="dnode"><div class="t" lang="fr">COMPARER</div><div class="t" lang="en">COMPARE</div><div class="d" lang="fr">contre votre système, ligne par ligne</div><div class="d" lang="en">against your system, line by line</div></div>
-      <div class="darrow">→</div>
-      <div class="dnode gate"><div class="t" lang="fr">PORTAIL HUMAIN</div><div class="t" lang="en">HUMAN GATE</div><div class="d" lang="fr">côte à côte · un clic · rien ne passe sans signature</div><div class="d" lang="en">side-by-side · one click · nothing posts unsigned</div></div>
-      <div class="darrow">→</div>
-      <div class="dnode sys"><div class="t" lang="fr">VOTRE SYSTÈME</div><div class="t" lang="en">YOUR SYSTEM</div><div class="d" lang="fr">ERP · TMS · gestion — avec preuve jointe</div><div class="d" lang="en">ERP · TMS · practice mgmt — evidence attached</div></div>
-    </div>
-    <div class="dlayer">
-      <div class="t" lang="fr">Couche de gouvernance — appliquée en code</div>
-      <div class="t" lang="en">Governance layer — enforced in code</div>
-      <div class="items">
-        <span lang="fr">◆ permissions par rôle</span><span lang="en">◆ role-tier permissions</span>
-        <span lang="fr">◆ budgets exécutoires</span><span lang="en">◆ hard budgets</span>
-        <span lang="fr">◆ journal d'audit chaîné</span><span lang="en">◆ hash-chained audit trail</span>
-        <span lang="fr">◆ caviardage avant persistance</span><span lang="en">◆ redaction before persistence</span>
-        <span lang="fr">◆ vérifications déterministes</span><span lang="en">◆ deterministic checks</span>
-      </div>
-    </div>
-  </div>
-  <p class="dia-cap" lang="fr">Déployé chez vous : vos documents ne quittent jamais vos serveurs — seuls des appels modèle caviardés et plafonnés sortent.</p>
-  <p class="dia-cap" lang="en">Deployed on your infrastructure: your documents never leave your servers — only redacted, budget-capped model calls exit.</p>
-</div></section>
 
-<section id="preuves"><div class="wrap">
-  <div class="planhead"><span class="plan-no">Plan Nº 03</span>
-    <h2 lang="fr">En production — pas en démonstration</h2>
-    <h2 lang="en">In production — not in demo</h2>
-  </div>
-  <p class="lead" lang="fr">Chez un courtier de transport montréalais, depuis mai 2026. Chiffres vérifiés dans la base de production.</p>
-  <p class="lead" lang="en">At a Montréal freight brokerage, since May 2026. Figures verified against the production database.</p>
-  <div class="nums">
-    <div class="num"><div class="v">3 368</div><div class="l" lang="fr">factures lues et vérifiées</div><div class="l" lang="en">invoices read and verified</div></div>
-    <div class="num"><div class="v">1,31 <span>M$</span></div><div class="l" lang="fr">traités en 59 jours</div><div class="l" lang="en">processed in 59 days</div></div>
-    <div class="num"><div class="v">80,9 <span>%</span></div><div class="l" lang="fr">sans aucune intervention</div><div class="l" lang="en">with zero human touches</div></div>
-    <div class="num"><div class="v">100 <span>%</span></div><div class="l" lang="fr">des sorties signées par un humain</div><div class="l" lang="en">of outputs human-signed</div></div>
-  </div>
-</div></section>
+  <p class="scroll-hint" lang="fr">Défilez</p>
+  <p class="scroll-hint" lang="en">Scroll</p>
+</div></div>
 
-<section id="cas"><div class="wrap">
-  <div class="planhead"><span class="plan-no">Plan Nº 04</span>
-    <h2 lang="fr">Même patron, autres documents</h2>
-    <h2 lang="en">Same pattern, different documents</h2>
-  </div>
-  <div class="cases">
-    <div class="case">
-      <div class="ch"><h3 lang="fr">Rapprochement de factures transporteurs</h3><h3 lang="en">Carrier invoice reconciliation</h3><span class="chip ok" lang="fr">Éprouvé</span><span class="chip ok" lang="en">Proven</span></div>
-      <div class="sector" lang="fr">Courtage · logistique · 3PL</div>
-      <div class="sector" lang="en">Brokerage · logistics · 3PL</div>
-      <p lang="fr">Factures lues ligne par ligne, comparées aux taux réservés, approbations préparées, preuves de livraison récupérées des portails.</p>
-      <p lang="en">Invoices read line by line, compared to booked rates, approvals staged, delivery proofs fetched from portals.</p>
+<!-- 03 : le portail -->
+<div class="pin-wrap" id="portail"><section class="ch pin" id="pin">
+  <div class="glow"></div>
+  <p class="marker rv">03 · <span lang="fr">Le portail</span><span lang="en">The gate</span></p>
+  <h2 class="rv d1" lang="fr" style="max-width:none">Rien n'atteint vos systèmes<br>sans un clic humain.</h2>
+  <h2 class="rv d1" lang="en" style="max-width:none">Nothing reaches your systems<br>without a human click.</h2>
+  <p class="cap rv d2" lang="fr">Chaque action qu'un agent propose s'arrête ici. Le portail d'approbation est le seul chemin — une signature, une trace. Essayez :</p>
+  <p class="cap rv d2" lang="en">Every action an agent proposes stops here. The approval gate is the only path — one signature, one trace. Try it:</p>
+  <div class="gate-scene" aria-hidden="true">
+    <div class="threshold"></div>
+    <div class="gate-frame"></div>
+    <div class="gate-doc q" data-i="0"><div class="fac">
+      <div class="fh"><span>Action · Agent-07</span></div>
+      <div class="fl w80"></div><div class="fl"></div><div class="fl w60"></div>
+      <div class="ft"><i lang="fr">paiement fournisseur</i><i lang="en">supplier payment</i></div>
     </div>
-    <div class="case">
-      <div class="ch"><h3 lang="fr">Réception et suivi de dossiers</h3><h3 lang="en">Claims intake &amp; file tracking</h3><span class="chip pl" lang="fr">Conçu</span><span class="chip pl" lang="en">Designed</span></div>
-      <div class="sector" lang="fr">Juridique · recouvrement · assurance</div>
-      <div class="sector" lang="en">Legal · collections · insurance ops</div>
-      <p lang="fr">Dossiers déballés et vérifiés, délais surveillés par juridiction, correspondance bilingue préparée pour signature d'avocat.</p>
-      <p lang="en">Packages parsed and verified, deadlines watched per jurisdiction, bilingual correspondence drafted for lawyer signature.</p>
+    <div class="stamp"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17.5 L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="case">
-      <div class="ch"><h3 lang="fr">Comptes fournisseurs et clients</h3><h3 lang="en">AP / AR automation</h3><span class="chip pl" lang="fr">Conçu</span><span class="chip pl" lang="en">Designed</span></div>
-      <div class="sector" lang="fr">Distribution · manufacture · services</div>
-      <div class="sector" lang="en">Distribution · manufacturing · services</div>
-      <p lang="fr">Appariement à trois voies contre bons de commande et réceptions, exceptions pré-diagnostiquées, preuve jointe à chaque écriture.</p>
-      <p lang="en">Three-way match against POs and receipts, exceptions pre-diagnosed, evidence attached to every posting.</p>
+    <div class="gate-doc q" data-i="1"><div class="fac">
+      <div class="fh"><span>Action · Agent-03</span></div>
+      <div class="fl w60"></div><div class="fl"></div><div class="fl w80"></div>
+      <div class="ft"><i lang="fr">réponse client</i><i lang="en">client reply</i></div>
     </div>
-    <div class="case">
-      <div class="ch"><h3 lang="fr">Gouvernance d'agents IA</h3><h3 lang="en">AI agent governance</h3><span class="chip pl" lang="fr">Actif prêt</span><span class="chip pl" lang="en">Asset ready</span></div>
-      <div class="sector" lang="fr">Banques · assureurs · institutions réglementées</div>
-      <div class="sector" lang="en">Banks · insurers · regulated FIs</div>
-      <p lang="fr">Permissions, budgets et journaux infalsifiables ajoutés à vos agents — cartographiés sur OSFI E-23, avec essais plafonnés à l'appui.</p>
-      <p lang="en">Permissions, budgets and tamper-evident logs retrofitted onto your agents — mapped to OSFI E-23, with capped probe tests as evidence.</p>
+    <div class="stamp"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17.5 L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="gate-doc q" data-i="2"><div class="fac">
+      <div class="fh"><span>Action · Agent-12</span></div>
+      <div class="fl"></div><div class="fl w45"></div><div class="fl w80"></div>
+      <div class="ft"><i lang="fr">écriture comptable</i><i lang="en">journal entry</i></div>
+    </div>
+    <div class="stamp"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17.5 L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div>
     </div>
   </div>
-</div></section>
+  <div class="approve-row">
+    <button class="btn approve" id="approvebtn" lang="fr">Approuver</button>
+    <button class="btn approve" id="approvebtn-en" lang="en">Approve</button>
+    <p class="sig" lang="fr"><b>Signature enregistrée</b> · <span class="sigdata">10:42:07 · journal h=9f3a…c21b</span></p>
+    <p class="sig" lang="en"><b>Signature recorded</b> · <span class="sigdata">10:42:07 · log h=9f3a…c21b</span></p>
+  </div>
+  <p class="pin-hint" lang="fr">C'est vous qui décidez</p>
+  <p class="pin-hint" lang="en">You decide</p>
+</section></div>
 
-<section id="methode"><div class="wrap">
-  <div class="planhead"><span class="plan-no">Plan Nº 05</span>
-    <h2 lang="fr">Comment on travaille</h2>
-    <h2 lang="en">How we work</h2>
+<!-- 04 : l'audit -->
+<section class="ch" id="audit">
+  <div class="glow"></div>
+  <p class="marker rv">04 · <span lang="fr">L'audit</span><span lang="en">The audit</span></p>
+  <h2 class="rv d1" lang="fr">Chaque action laisse une trace que votre vérificateur peut rejouer.</h2>
+  <h2 class="rv d1" lang="en">Every action leaves a trail your auditor can replay.</h2>
+  <p class="cap rv d2" lang="fr">Journal chaîné par hachage — infalsifiable, rejouable ligne par ligne. Conçu pour les cadres canadiens : OSFI E-23 et la Loi 25 du Québec.</p>
+  <p class="cap rv d2" lang="en">Hash-chained log — tamper-evident, replayable line by line. Built for Canadian frameworks: OSFI E-23 and Québec's Law 25.</p>
+  <div class="chain rv d2" aria-hidden="true">
+    <div class="fac"><div class="fh"><span>10:41:52</span></div><div class="fl w80"></div><div class="fl w60"></div><div class="ft"><i>h=7e04</i></div></div>
+    <span class="lnk">→</span>
+    <div class="fac"><div class="fh"><span>10:42:07</span></div><div class="fl w80"></div><div class="fl w60"></div><div class="ft"><i>h=9f3a</i></div></div>
+    <span class="lnk">→</span>
+    <div class="fac"><div class="fh"><span>10:42:31</span></div><div class="fl w80"></div><div class="fl w60"></div><div class="ft"><i>h=c21b</i></div></div>
   </div>
-  <div class="method">
-    <div class="step">
-      <div class="n" lang="fr">Étape 1 · jours</div><div class="n" lang="en">Step 1 · days</div>
-      <h3 lang="fr">Sonder</h3><h3 lang="en">Probe</h3>
-      <p lang="fr">Un essai plafonné — des dizaines de dollars, pas des dizaines de milliers — sur un de vos vrais processus. Vous recevez la précision mesurée sur vos documents avant de vous engager.</p>
-      <p lang="en">A hard-capped trial — tens of dollars, not tens of thousands — on one of your real processes. You get measured accuracy on your documents before committing.</p>
+  <div class="nums rv d3" id="nums">
+    <div class="num">
+      <div class="v"><span class="cnt" data-n="1.31" data-fmt="m">0</span> <span>M$</span></div>
+      <div class="l" lang="fr">traités en 59 jours</div>
+      <div class="l" lang="en">processed in 59 days</div>
     </div>
-    <div class="step">
-      <div class="n" lang="fr">Étape 2 · semaines</div><div class="n" lang="en">Step 2 · weeks</div>
-      <h3 lang="fr">Construire</h3><h3 lang="en">Build</h3>
-      <p lang="fr">Portée fixe, sur vos serveurs, bilingue dès le premier jour. Nos trousses existantes font qu'un mandat démarre déjà construit à 60 %.</p>
-      <p lang="en">Fixed scope, on your infrastructure, bilingual from day one. Existing kits mean an engagement starts ~60% built.</p>
+    <div class="num">
+      <div class="v"><span class="cnt" data-n="80.9" data-fmt="pct">0</span> <span>%</span></div>
+      <div class="l" lang="fr">sans aucune intervention</div>
+      <div class="l" lang="en">fully touchless</div>
     </div>
-    <div class="step">
-      <div class="n" lang="fr">Étape 3 · mensuel</div><div class="n" lang="en">Step 3 · monthly</div>
-      <h3 lang="fr">Opérer</h3><h3 lang="en">Operate</h3>
-      <p lang="fr">Précision suivie par source, rapports dans votre langue, nouveaux types de documents ajoutés au fil de l'eau.</p>
-      <p lang="en">Accuracy tracked per source, reports in your language, new document types added as they appear.</p>
+    <div class="num">
+      <div class="v"><span class="cnt" data-n="100" data-fmt="int">0</span> <span>%</span></div>
+      <div class="l" lang="fr">approuvé par un humain</div>
+      <div class="l" lang="en">human-approved</div>
     </div>
   </div>
-</div></section>
+  <p class="src rv d3" lang="fr">Notre système de référence, en production 59+ jours chez un courtier de transport montréalais — non nommé par confidentialité. Chiffres vérifiés en base de production, 23 juillet 2026. ~2 $/mois de dépense modèle, plafonnée en code.</p>
+  <p class="src rv d3" lang="en">Our reference system, in production 59+ days at a Montréal freight brokerage — unnamed for confidentiality. Figures verified against the production database, July 23, 2026. ~$2/month model spend, capped in code.</p>
+</section>
 
-<section class="quoteband"><div class="wrap">
-  <blockquote lang="fr">« Vos gens restent sur chaque dollar. Le système fait le <b>transport et la comparaison</b> — le jugement reste humain. »</blockquote>
-  <blockquote lang="en">"Your people stay on every dollar. The system does the <b>transport and comparison</b> — judgment stays human."</blockquote>
-  <p class="attr" lang="fr">Thanh-Huy Nguyen — fondateur, Montréal</p>
-  <p class="attr" lang="en">Thanh-Huy Nguyen — founder, Montréal</p>
-</div></section>
+<!-- 05 : votre premier processus -->
+<section class="ch" id="contact">
+  <div class="glow"></div>
+  <div class="your-fac rv" aria-hidden="true"><div class="fac">
+    <div class="fh"><span lang="fr">Votre processus</span><span lang="en">Your process</span></div>
+    <div class="fl w80"></div><div class="fl"></div><div class="fl w60"></div>
+    <div class="ft"><i>?</i></div>
+  </div></div>
+  <p class="marker rv d1">05 · <span lang="fr">Votre premier processus</span><span lang="en">Your first process</span></p>
+  <h2 class="rv d2" lang="fr">Commencez par un seul processus.</h2>
+  <h2 class="rv d2" lang="en">Start with a single process.</h2>
+  <p class="cap rv d3" lang="fr">Un essai plafonné — des dizaines de dollars, pas des dizaines de milliers. Vous recevez la précision mesurée sur vos propres documents, puis vous décidez.</p>
+  <p class="cap rv d3" lang="en">A capped trial — tens of dollars, not tens of thousands. You get measured accuracy on your own documents, then you decide.</p>
+  <a class="btn rv d3" href="mailto:bonjour@agenterie.ca">bonjour@agenterie.ca</a>
+  <p class="src rv d3" lang="fr">Réponse en 24 h · FR / EN</p>
+  <p class="src rv d3" lang="en">Reply within 24h · FR / EN</p>
+</section>
 
-<footer id="contact"><div class="wrap foot-grid">
+<footer><div class="wrap foot-in">
   <div class="foot-left">
-    <a class="logo" href="#">l'agenterie<i>.</i></a>
-    <p lang="fr">Automatisation gouvernée pour les entreprises canadiennes. Montréal, Québec.</p>
-    <p lang="en">Governed automation for Canadian enterprise. Montréal, Québec.</p>
+    <a class="logo" href="#">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M86 64 V86 H14 V14 H86 V36" fill="none" stroke="#F1EAE0" stroke-width="13"/>
+        <rect x="64" y="37" width="30" height="26" fill="#E4572E"/>
+      </svg>
+      agenterie
+    </a>
+    <p lang="fr">Solutions agentiques gouvernées pour les entreprises canadiennes. Montréal, Québec <svg class="leaf" viewBox="-2015 -2000 4030 4030" aria-label="Canada"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></svg></p>
+    <p lang="en">Governed agentic solutions for Canadian enterprise. Montréal, Québec <svg class="leaf" viewBox="-2015 -2000 4030 4030" aria-label="Canada"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></svg></p>
   </div>
   <div class="foot-right">
-    <a href="#">bonjour@agenterie.ca</a><br>
-    <span lang="fr">Réponse en 24 h · FR / EN</span>
-    <span lang="en">Replies within 24h · FR / EN</span>
+    <a href="mailto:bonjour@agenterie.ca">bonjour@agenterie.ca</a><br>
+    <span lang="fr">Conçu pour OSFI E-23 · Loi 25 · hébergé chez vous</span>
+    <span lang="en">Designed for OSFI E-23 · Law 25 · hosted on your servers</span><br>
+    <span>© 2026 Agenterie · FR / EN</span>
   </div>
 </div></footer>
 
+<script>
+/* intro bars, then reveal */
+(function(){
+  var intro = document.getElementById('intro');
+  if(!intro) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ intro.remove(); return; }
+  setTimeout(function(){ intro.classList.add('done'); }, 1550);
+  setTimeout(function(){ intro.remove(); }, 2150);
+})();
+
+/* flowing background — each chapter eases the paper to its own tone */
+(function(){
+  var root = document.documentElement, last = '';
+  window.__setTone = function(c){
+    if(c === last) return; last = c;
+    root.style.setProperty('--bgflow', c);
+  };
+  var map = [ ['pin', '#F3E3D6'], ['audit', '#EDE8DD'], ['contact', '#F4ECDD'] ];
+  if('IntersectionObserver' in window){
+    map.forEach(function(m){
+      var el = document.getElementById(m[0]);
+      if(!el) return;
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting) window.__setTone(m[1]); });
+      }, {threshold:[.5, .8]}).observe(el);
+    });
+  }
+})();
+
+/* language toggle (persisted) */
+(function(){
+  var btn = document.getElementById('langbtn');
+  function apply(en){
+    document.body.classList.toggle('en', en);
+    document.documentElement.lang = en ? 'en' : 'fr';
+    try{ localStorage.setItem('agenterie-lang', en ? 'en' : 'fr'); }catch(e){}
+  }
+  btn.addEventListener('click', function(){ apply(!document.body.classList.contains('en')); });
+  try{ if(localStorage.getItem('agenterie-lang') === 'en') apply(true); }catch(e){}
+})();
+
+/* ============================================================
+   The object — a column of iso slabs, chaos → ordered twist,
+   driven by scroll progress through .story-wrap.
+   ============================================================ */
+(function(){
+  var canvas = document.getElementById('obj');
+  var wrap = document.getElementById('storywrap');
+  var story = document.getElementById('story');
+  var beat1 = document.getElementById('beat1');
+  var beat2 = document.getElementById('beat2');
+  if(!canvas || !canvas.getContext) return;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0;
+
+  function resize(){
+    var d = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.round(W * d); canvas.height = Math.round(H * d);
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  window.addEventListener('resize', function(){ resize(); if(reduced) draw(1, 0); });
+  resize();
+
+  var N = 30;
+  /* deterministic chaos placement per slab */
+  function chaos(i){
+    var mobile = W < 880;
+    return {
+      x: Math.sin(i * 2.31) * W * (mobile ? 0.34 : 0.30),
+      y: (i / N - 0.5) * H * (mobile ? 0.42 : 0.72) + Math.cos(i * 1.73) * (mobile ? 26 : 44),
+      r: i * 1.31
+    };
+  }
+  function ease(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  /* draw one iso slab (square rotated by r, iso-projected) at cx, cy */
+  function slab(cx, cy, s, r, fill, stroke, lw){
+    var pts = [[-s,-s],[s,-s],[s,s],[-s,s]].map(function(p){
+      var x = p[0]*Math.cos(r) - p[1]*Math.sin(r);
+      var y = p[0]*Math.sin(r) + p[1]*Math.cos(r);
+      return [cx + (x - y) * 0.72, cy + (x + y) * 0.36];
+    });
+    /* thin extrusion, scales with the slab */
+    var th = Math.min(16, Math.max(5, s * 0.13));
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1] + th);
+    for(var k = 1; k < 4; k++) ctx.lineTo(pts[k][0], pts[k][1] + th);
+    ctx.closePath();
+    ctx.fillStyle = '#E0D7C7'; ctx.fill();
+    ctx.strokeStyle = 'rgba(31,27,21,.18)'; ctx.lineWidth = 1; ctx.stroke();
+    /* top face */
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for(k = 1; k < 4; k++) ctx.lineTo(pts[k][0], pts[k][1]);
+    ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill();
+    ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.stroke();
+  }
+
+  var tAmb = 0;
+  function draw(p, amb){
+    ctx.clearRect(0, 0, W, H);
+    var mobile = W < 880;
+    var ox = mobile ? W * 0.5 : W * 0.34;          /* object anchor */
+    var oy = mobile ? H * 0.32 : H * 0.5;
+    var form = ease(clamp01((p - 0.30) / 0.28));    /* chaos → column */
+    var twist = p * 2.2;                            /* keeps turning as you scroll */
+    var thru = ease(clamp01((p - 0.70) / 0.20));    /* fly THROUGH the column at the end */
+    var zoom = 1 + thru * 5;
+    var dy = (mobile ? 9 : 11) * zoom;              /* column spacing */
+    var s = (mobile ? 34 : 46) * zoom;              /* slab half-size */
+    var rise = ease(clamp01((p - 0.54) / 0.22)) * H * 0.10;
+    ox = ox + (W * 0.5 - ox) * thru;                /* drift to center as we enter it */
+    var travel = thru * H * 1.15;                   /* camera descends the column */
+    ctx.globalAlpha = 1 - clamp01((p - 0.87) / 0.08);
+
+    for(var i = 0; i < N; i++){
+      var c = chaos(i);
+      var colX = 0;
+      var colY = (i - (N - 1) / 2) * dy;
+      var bobA = (1 - form) * 6;
+      var bx = Math.sin(amb * 0.9 + i) * bobA;
+      var by = Math.cos(amb * 0.7 + i * 1.4) * bobA;
+      var x = ox + c.x * (1 - form) + colX * form + bx;
+      var y = oy + c.y * (1 - form) + colY * form + by + rise - travel;
+      if(y < -s * 3 || y > H + s * 3) continue;     /* cull off-screen during zoom */
+      var r = c.r * (1 - form) + (i * 0.16 + twist) * form;
+      var isLead = (i === N - 1);
+      slab(x, y, s * (0.7 + 0.3 * form), r,
+        isLead ? '#E4572E' : '#FBF7EF',
+        isLead ? '#C24623' : 'rgba(31,27,21,.55)',
+        isLead ? 1.4 : 1.1);
+    }
+    /* dust */
+    ctx.fillStyle = 'rgba(31,27,21,.25)';
+    for(i = 0; i < 14; i++){
+      var px = (Math.sin(i * 5.1) * 0.5 + 0.5) * W;
+      var py = ((Math.cos(i * 3.3) * 0.5 + 0.5) * H + amb * 6 + i * 17) % H;
+      ctx.fillRect(px, py, 1.6, 1.6);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function progress(){
+    var rect = wrap.getBoundingClientRect();
+    var total = wrap.offsetHeight - window.innerHeight;
+    return clamp01(-rect.top / Math.max(1, total));
+  }
+
+  if(reduced){
+    draw(1, 0);
+    beat1.classList.add('show'); beat2.classList.add('show');
+    return;
+  }
+
+  var running = false;
+  function frame(){
+    var p = progress();
+    tAmb += 0.016;
+    draw(p, tAmb);
+    beat1.classList.toggle('show', p < 0.34);
+    beat2.classList.toggle('show', p >= 0.40 && p < 0.72);
+    story.classList.toggle('scrolled', p > 0.05);
+    if(window.__setTone && p < 0.88) window.__setTone(p < 0.42 ? '#F1EAE0' : '#EFE4D3');
+    if(running) requestAnimationFrame(frame);
+  }
+  function setRun(r){
+    if(r && !running){ running = true; requestAnimationFrame(frame); }
+    else if(!r){ running = false; }
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ setRun(e.isIntersecting && !document.hidden); });
+    }, {threshold:0}).observe(story);
+  } else { setRun(true); }
+  document.addEventListener('visibilitychange', function(){ setRun(!document.hidden); });
+  draw(0, 0); beat1.classList.add('show');
+})();
+
+/* chapter reveals */
+(function(){
+  var chs = document.querySelectorAll('.ch');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window) || reduced){
+    chs.forEach(function(c){ c.classList.add('on'); }); return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.3});
+  chs.forEach(function(c){ io.observe(c); });
+  setTimeout(function(){ chs.forEach(function(c){ c.classList.add('on'); }); }, 4000);
+})();
+
+/* the gate */
+(function(){
+  var pin = document.getElementById('pin');
+  var wrapEl = document.getElementById('portail');
+  if(!pin) return;
+  var cards = Array.prototype.slice.call(pin.querySelectorAll('.gate-doc.q'));
+  var sigTimes = ['10:42:07', '10:42:19', '10:42:26'];
+  var sigHashFR = ['journal h=9f3a…c21b', 'journal h=44e1…d90c', 'journal h=7e04…ab52'];
+  var sigHashEN = ['log h=9f3a…c21b', 'log h=44e1…d90c', 'log h=7e04…ab52'];
+  var passed = 0;
+  function layout(){
+    cards.forEach(function(c, idx){
+      c.classList.remove('s0', 's1', 's2', 'pass');
+      if(idx < passed) c.classList.add('pass');
+      else c.classList.add('s' + Math.min(2, idx - passed));
+    });
+  }
+  function setBtns(dis){
+    ['approvebtn','approvebtn-en'].forEach(function(id){
+      var b = document.getElementById(id);
+      if(b){ if(dis) b.setAttribute('disabled',''); else b.removeAttribute('disabled'); }
+    });
+  }
+  function approve(){
+    if(passed >= cards.length) return;
+    var i = passed; passed++;
+    layout();
+    var sigs = pin.querySelectorAll('.sig');
+    sigs[0].querySelector('.sigdata').textContent = sigTimes[i] + ' · ' + sigHashFR[i];
+    sigs[1].querySelector('.sigdata').textContent = sigTimes[i] + ' · ' + sigHashEN[i];
+    pin.classList.add('approved');
+    if(passed >= cards.length) setBtns(true);
+  }
+  function reset(){
+    if(passed === 0) return;
+    passed = 0; layout();
+    pin.classList.remove('approved');
+    setBtns(false);
+  }
+  layout();
+  ['approvebtn','approvebtn-en'].forEach(function(id){
+    var b = document.getElementById(id); if(b) b.addEventListener('click', approve);
+  });
+  if('IntersectionObserver' in window){
+    var sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;bottom:18%;height:1px;width:1px;';
+    wrapEl.appendChild(sentinel);
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) approve(); });
+    }, {threshold:0}).observe(sentinel);
+    /* scrolling back above the gate resets the scene so it replays */
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting && e.boundingClientRect.top >= window.innerHeight) reset();
+      });
+    }, {threshold:0}).observe(wrapEl);
+  }
+})();
+
+/* count-up */
+(function(){
+  var grid = document.getElementById('nums');
+  if(!grid) return;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(el, val){
+    var f = el.dataset.fmt, fr = !document.body.classList.contains('en');
+    if(f === 'int'){ el.textContent = String(Math.round(val)); return; }
+    var s = val.toFixed(f === 'm' ? 2 : 1);
+    el.textContent = fr ? s.replace('.', ',') : s;
+  }
+  function run(){
+    grid.querySelectorAll('.cnt').forEach(function(el){
+      var target = parseFloat(el.dataset.n);
+      if(reduced){ fmt(el, target); return; }
+      var t0 = performance.now(), dur = 1400;
+      (function tick(t){
+        var p = Math.min(1, (t - t0) / dur);
+        p = 1 - Math.pow(1 - p, 3);
+        fmt(el, target * p);
+        if(p < 1) requestAnimationFrame(tick);
+      })(t0);
+    });
+  }
+  if(!('IntersectionObserver' in window) || reduced){ run(); return; }
+  var done = false;
+  new IntersectionObserver(function(es, ob){
+    es.forEach(function(e){ if(e.isIntersecting && !done){ done = true; run(); ob.disconnect(); } });
+  }, {threshold:.4}).observe(grid);
+  setTimeout(function(){ if(!done){ done = true; run(); } }, 6000);
+})();
+</script>
 </body>
 </html>
