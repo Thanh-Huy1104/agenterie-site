@@ -552,16 +552,24 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
   }
 })();
 
-/* language toggle (persisted) */
+/* language toggle — FR canonical; first visit follows the browser language */
 (function(){
   var btn = document.getElementById('langbtn');
-  function apply(en){
+  function apply(en, persist){
     document.body.classList.toggle('en', en);
     document.documentElement.lang = en ? 'en' : 'fr';
-    try{ localStorage.setItem('agenterie-lang', en ? 'en' : 'fr'); }catch(e){}
+    if(persist){ try{ localStorage.setItem('agenterie-lang', en ? 'en' : 'fr'); }catch(e){} }
   }
-  btn.addEventListener('click', function(){ apply(!document.body.classList.contains('en')); });
-  try{ if(localStorage.getItem('agenterie-lang') === 'en') apply(true); }catch(e){}
+  btn.addEventListener('click', function(){ apply(!document.body.classList.contains('en'), true); });
+  try{
+    var saved = localStorage.getItem('agenterie-lang');
+    if(saved){ apply(saved === 'en', false); }
+    else{
+      var langs = navigator.languages || [navigator.language || 'fr'];
+      var wantsFr = langs.some(function(l){ return /^fr/i.test(l); });
+      if(!wantsFr) apply(true, false);   /* auto only — not persisted, so FR stays canonical */
+    }
+  }catch(e){}
 })();
 
 /* ============================================================
