@@ -259,7 +259,38 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
   .num{ border-right:0; padding:0; min-width:0; }
 }
 
-/* ---------- 05 : votre premier processus ---------- */
+/* ---------- 05 : l'atelier ---------- */
+#atelier .glow{ left:-18vw; top:20vh; }
+.atelier-grid{
+  position:relative; display:grid; grid-template-columns:250px 1fr; gap:60px;
+  align-items:center; max-width:920px; width:100%; text-align:left;
+}
+.atelier-grid h2, .atelier-grid .cap, .atelier-grid .marker{ text-align:left; margin-left:0; }
+.portrait{
+  position:relative; width:250px;
+}
+.portrait img{
+  display:block; width:100%; height:auto; aspect-ratio:1/1; object-fit:cover;
+  background:var(--card); border:1.5px solid var(--line2);
+  box-shadow:0 1px 2px rgba(31,27,21,.06), 0 18px 44px rgba(31,27,21,.12);
+}
+.portrait .pcap{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mut); margin-top:12px; text-align:center;
+}
+.at-facts{
+  font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--mut);
+  margin-top:22px; line-height:2;
+}
+.at-facts a{ color:var(--org); text-decoration:none; border-bottom:1px solid rgba(228,87,46,.35); }
+.at-facts a:hover{ border-color:var(--org); }
+@media (max-width:820px){
+  .atelier-grid{ grid-template-columns:1fr; gap:34px; text-align:center; }
+  .atelier-grid h2, .atelier-grid .cap, .atelier-grid .marker{ text-align:center; margin-left:auto; margin-right:auto; }
+  .portrait{ margin:0 auto; width:min(260px, 70vw); }
+}
+
+/* ---------- 06 : votre premier processus ---------- */
 #contact .glow{ top:10vh; }
 .your-fac{ position:relative; margin:0 0 34px; }
 .ca-stamp{
@@ -474,7 +505,29 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
   <p class="src rv d3" lang="en">Our reference system, in production 59+ days at a Montréal freight brokerage — unnamed for confidentiality. Figures verified against the production database, July 23, 2026. ~$2/month model spend, capped in code.</p>
 </section>
 
-<!-- 05 : votre premier processus -->
+<!-- 05 : l'atelier -->
+<section class="ch" id="atelier">
+  <div class="glow"></div>
+  <div class="atelier-grid">
+    <div class="portrait rv">
+      <img src="portrait.jpg" alt="Thanh-Huy Nguyen, fondateur d'Agenterie" width="200" height="200">
+      <p class="pcap">Thanh-Huy Nguyen — <span lang="fr">fondateur</span><span lang="en">founder</span></p>
+    </div>
+    <div>
+      <p class="marker rv">05 · <span lang="fr">L'atelier</span><span lang="en">The atelier</span></p>
+      <h2 class="rv d1" lang="fr">Une agenterie, comme une horlogerie.</h2>
+      <h2 class="rv d1" lang="en">An "agenterie," like a watchmaker's atelier.</h2>
+      <p class="cap rv d2" lang="fr">Des systèmes construits avec soin, qui font leur travail <b>sous vos yeux et sous votre signature</b>. Agenterie est un atelier montréalais fondé par Thanh-Huy Nguyen. Petit par choix : vous parlez toujours directement à la personne qui construit votre système — jamais à un intermédiaire.</p>
+      <p class="cap rv d2" lang="en">Systems built with care, that do their work <b>in front of you and under your signature</b>. Agenterie is a Montréal atelier founded by Thanh-Huy Nguyen. Small by choice: you always talk directly to the person building your system — never to a go-between.</p>
+      <p class="at-facts rv d3">
+        <span lang="fr">Montréal, Québec · Fondé en 2026</span><span lang="en">Montréal, Québec · Founded 2026</span>
+        · <a href="https://www.linkedin.com/in/thanh-huy-nguyen-703606220/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 : votre premier processus -->
 <section class="ch" id="contact">
   <div class="glow"></div>
   <div class="your-fac rv" aria-hidden="true"><div class="fac">
@@ -497,7 +550,7 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
     <g transform="translate(60,61) scale(0.0112)"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></g>
   </svg>
   </div>
-  <p class="marker rv d1">05 · <span lang="fr">Votre premier processus</span><span lang="en">Your first process</span></p>
+  <p class="marker rv d1">06 · <span lang="fr">Votre premier processus</span><span lang="en">Your first process</span></p>
   <h2 class="rv d2" lang="fr">Commencez par un seul processus.</h2>
   <h2 class="rv d2" lang="en">Start with a single process.</h2>
   <p class="cap rv d3" lang="fr">Un essai plafonné — des dizaines de dollars, pas des dizaines de milliers. Vous recevez la précision mesurée sur vos propres documents, puis vous décidez.</p>
@@ -544,7 +597,7 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
     if(c === last) return; last = c;
     root.style.setProperty('--bgflow', c);
   };
-  var map = [ ['pin', '#F3E3D6'], ['audit', '#EDE8DD'], ['contact', '#F4ECDD'] ];
+  var map = [ ['pin', '#F3E3D6'], ['audit', '#EDE8DD'], ['atelier', '#F2E9DA'], ['contact', '#F4ECDD'] ];
   if('IntersectionObserver' in window){
     map.forEach(function(m){
       var el = document.getElementById(m[0]);
