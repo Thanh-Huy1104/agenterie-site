@@ -249,6 +249,11 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
 /* ---------- 05 : votre premier processus ---------- */
 #contact .glow{ top:10vh; }
 .your-fac{ position:relative; margin:0 0 34px; }
+.ca-stamp{
+  position:absolute; top:-44px; right:-64px; width:104px; height:104px;
+  transform:rotate(-12deg); opacity:.92; pointer-events:none;
+}
+@media (max-width:600px){ .ca-stamp{ right:-34px; width:88px; height:88px; } }
 .your-fac .fac{
   width:180px; border-style:dashed; border-color:var(--line2); box-shadow:none;
   background:color-mix(in srgb, var(--card) 55%, transparent);
@@ -369,8 +374,8 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
     <p class="marker">02 · <span lang="fr">La mise en place</span><span lang="en">The build</span></p>
     <h2 lang="fr">Nous mettons en place des agents qui font ce travail — de bout en bout.</h2>
     <h2 lang="en">We put agents in place that do this work — end to end.</h2>
-    <p class="cap" lang="fr">Conçus pour <b>vos</b> processus, livrés <b>en semaines</b>, hébergés chez vous — <b>vos données restent au Canada</b>. Chaque action journalisée, chaque budget plafonné en code.</p>
-    <p class="cap" lang="en">Designed for <b>your</b> processes, delivered <b>in weeks</b>, hosted on your servers — <b>your data stays in Canada</b>. Every action logged, every budget capped in code.</p>
+    <p class="cap" lang="fr">Conçus pour <b>vos</b> processus, livrés <b>en semaines</b>, hébergés chez vous — <b>vos données restent au <span style="white-space:nowrap">Canada <svg class="leaf" viewBox="-2015 -2000 4030 4030" aria-hidden="true"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></svg></span></b>. Chaque action journalisée, chaque budget plafonné en code.</p>
+    <p class="cap" lang="en">Designed for <b>your</b> processes, delivered <b>in weeks</b>, hosted on your servers — <b>your data stays in <span style="white-space:nowrap">Canada <svg class="leaf" viewBox="-2015 -2000 4030 4030" aria-hidden="true"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></svg></span></b>. Every action logged, every budget capped in code.</p>
   </div>
 
   <p class="scroll-hint" lang="fr">Défilez</p>
@@ -463,7 +468,22 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
     <div class="fh"><span lang="fr">Votre processus</span><span lang="en">Your process</span></div>
     <div class="fl w80"></div><div class="fl"></div><div class="fl w60"></div>
     <div class="ft"><i>?</i></div>
-  </div></div>
+  </div>
+  <svg class="ca-stamp" viewBox="0 0 120 120" lang="fr">
+    <defs><path id="circfr" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+    <circle cx="60" cy="60" r="57" fill="none" stroke="#D52B1E" stroke-width="2.5"/>
+    <circle cx="60" cy="60" r="33" fill="none" stroke="#D52B1E" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.6" fill="#D52B1E" font-weight="600"><textPath href="#circfr">CONÇU · HÉBERGÉ · OPÉRÉ AU CANADA · MTL ·</textPath></text>
+    <g transform="translate(60,61) scale(0.0112)"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></g>
+  </svg>
+  <svg class="ca-stamp" viewBox="0 0 120 120" lang="en">
+    <defs><path id="circen" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+    <circle cx="60" cy="60" r="57" fill="none" stroke="#D52B1E" stroke-width="2.5"/>
+    <circle cx="60" cy="60" r="33" fill="none" stroke="#D52B1E" stroke-width="1"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.6" fill="#D52B1E" font-weight="600"><textPath href="#circen">BUILT · HOSTED · RUN IN CANADA · MTL ·</textPath></text>
+    <g transform="translate(60,61) scale(0.0112)"><path fill="#D52B1E" d="m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"/></g>
+  </svg>
+  </div>
   <p class="marker rv d1">05 · <span lang="fr">Votre premier processus</span><span lang="en">Your first process</span></p>
   <h2 class="rv d2" lang="fr">Commencez par un seul processus.</h2>
   <h2 class="rv d2" lang="en">Start with a single process.</h2>
