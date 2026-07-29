@@ -61,7 +61,7 @@ nav{
   border-bottom:1px solid var(--line);
   transform:translateZ(0);
 }
-.nav-in{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding:13px 0; }
+.nav-in{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding-top:13px; padding-bottom:13px; }
 .logo{ display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:700; font-size:17.5px; letter-spacing:-.02em; justify-self:start; }
 .logo svg{ width:25px; height:25px; }
 .nav-links{ display:flex; gap:6px; justify-self:center; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
@@ -84,7 +84,11 @@ nav{
 }
 .btn:hover{ background:var(--org-d); }
 nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16px; font-size:14px; }
-@media (max-width:920px){ .nav-links, nav .nav-cta{ display:none; } .nav-in{ grid-template-columns:1fr auto; } }
+@media (max-width:920px){
+  .nav-links, nav .nav-cta{ display:none; }
+  .nav-in{ grid-template-columns:1fr auto; }
+  .lang{ padding:0 16px; }
+}
 
 /* ---------- shared chapter styles ---------- */
 .ch{
@@ -234,7 +238,12 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
 }
 .chain .lnk::before{ content:""; width:26px; height:1px; background:var(--line2); }
 .chain .lnk::after{ content:""; width:26px; height:1px; background:var(--line2); }
-@media (max-width:700px){ .chain .lnk::before, .chain .lnk::after{ width:10px; } .chain .lnk{ padding:0 6px; } }
+@media (max-width:700px){
+  .chain{ flex-direction:column; gap:6px; }
+  .chain .fac{ width:150px; }
+  .chain .lnk{ transform:rotate(90deg); padding:10px 12px; }
+  .chain .lnk::before, .chain .lnk::after{ width:12px; }
+}
 .nums{ position:relative; display:flex; margin-top:40px; flex-wrap:wrap; justify-content:center; }
 .num{ padding:10px 44px; border-right:1px solid var(--line2); min-width:200px; }
 .num:last-child{ border-right:0; }
@@ -265,7 +274,7 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
 
 /* ---------- footer ---------- */
 footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2; }
-.foot-in{ display:flex; justify-content:space-between; align-items:flex-start; gap:30px; flex-wrap:wrap; padding:52px 0 56px; }
+.foot-in{ display:flex; justify-content:space-between; align-items:flex-start; gap:30px; flex-wrap:wrap; padding-top:52px; padding-bottom:56px; }
 .foot-left .logo{ color:var(--paper); }
 .foot-left p{ font-size:14px; color:rgba(241,234,224,.55); max-width:40ch; margin:12px 0 0; }
 .leaf{ width:13px; height:13px; vertical-align:-1.5px; margin:0 1px 0 3px; }
