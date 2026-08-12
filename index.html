@@ -309,6 +309,10 @@ nav .nav-cta{ height:34px; display:inline-flex; align-items:center; padding:0 16
 }
 .at-facts a{ color:var(--org); text-decoration:none; border-bottom:1px solid rgba(228,87,46,.35); }
 .at-facts a:hover{ border-color:var(--org); }
+.cred{ display:flex; flex-direction:column; align-items:center; gap:9px; margin-top:24px; text-decoration:none; }
+.cred img{ width:104px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(31,27,21,.16)); transition:transform .3s ease; }
+.cred:hover img{ transform:translateY(-3px); }
+.cred span{ font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--mut); text-align:center; line-height:1.55; max-width:190px; }
 @media (max-width:820px){
   .atelier-grid{ grid-template-columns:1fr; gap:34px; text-align:center; }
   .atelier-grid h2, .atelier-grid .cap, .atelier-grid .marker{ text-align:center; margin-left:auto; margin-right:auto; }
@@ -547,6 +551,11 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
     <div class="portrait rv">
       <img src="portrait.jpg" alt="Thanh-Huy Nguyen, fondateur d'Agenterie" width="200" height="200">
       <p class="pcap">Thanh-Huy Nguyen — <span lang="fr">fondateur</span><span lang="en">founder</span></p>
+      <a class="cred" href="https://www.credly.com/badges/ad81d1ba-fc8d-49b6-97db-ad6c466f5eef/public_url" target="_blank" rel="noopener">
+        <img src="claude-architect-badge.png" alt="Claude Certified Architect — Professional, issued by Anthropic" width="104" height="104" loading="lazy">
+        <span lang="fr">Architecte certifié Claude — Professionnel · Anthropic</span>
+        <span lang="en">Claude Certified Architect — Professional · Anthropic</span>
+      </a>
     </div>
     <div>
       <p class="marker rv">05 · <span lang="fr">L'atelier</span><span lang="en">The atelier</span></p>
