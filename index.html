@@ -521,18 +521,18 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
       <div class="l" lang="en">processed in 14 weeks</div>
     </div>
     <div class="num">
-      <div class="v"><span class="cnt" data-n="99" data-fmt="int">0</span> <span>%</span></div>
-      <div class="l" lang="fr">des factures lues correctement</div>
-      <div class="l" lang="en">of invoices read correctly</div>
+      <div class="v"><span class="cnt" data-n="9499" data-fmt="sep">0</span></div>
+      <div class="l" lang="fr">factures traitées depuis mai 2026</div>
+      <div class="l" lang="en">invoices processed since May 2026</div>
     </div>
     <div class="num">
-      <div class="v"><span class="cnt" data-n="71" data-fmt="int">0</span> <span>k$</span></div>
-      <div class="l" lang="fr">de surfacturation retenus pour révision</div>
-      <div class="l" lang="en">of over-billing held for review</div>
+      <div class="v"><span class="cnt" data-n="30" data-fmt="int">0</span></div>
+      <div class="l" lang="fr">transporteurs</div>
+      <div class="l" lang="en">carriers</div>
     </div>
   </div>
-  <p class="src rv d3" lang="fr">Notre système de référence, en production chez un courtier de transport montréalais depuis le 25 mai 2026 (14 semaines) — non nommé par confidentialité. De juin à août, le volume de factures a augmenté de 72 % — et moins de factures sont passées par une personne qu'en juin. 7 016 factures · 3,06 M$ · 30 transporteurs · 66,8 % approuvées automatiquement selon les règles du client · 3 816 preuves de livraison déposées, dont 83 % par le robot. Chiffres vérifiés en base de production, 2 septembre 2026. ~3–4 $/mois de dépense modèle, plafonnée en code.</p>
-  <p class="src rv d3" lang="en">Our reference system, in production at a Montréal freight brokerage since May 25, 2026 (14 weeks) — unnamed for confidentiality. From June to August, invoice volume grew 72% — and fewer invoices went through a person than in June. 7,016 invoices · $3.06M · 30 carriers · 66.8% auto-approved under the client's own rules · 3,816 proofs of delivery filed, 83% by the robot. Figures verified against the production database, September 2, 2026. ~$3–4/month model spend, capped in code.</p>
+  <p class="src rv d3" lang="fr">Notre système de référence, en production chez un courtier de transport montréalais depuis le 25 mai 2026, non nommé par confidentialité. Le taux d'approbation automatique est passé de 0 % en juin à 46 % en août, à mesure que le client écrit ses règles ; le reste est revu par une personne. De juin à août, le volume de factures a augmenté de 72 %, et moins de factures sont passées par une personne qu'en juin. 9 499 factures au 27 septembre 2026 · 30 transporteurs · chiffres tirés de la base de production. ~3–4 $/mois de dépense modèle, plafonnée en code.</p>
+  <p class="src rv d3" lang="en">Our reference system, in production at a Montréal freight brokerage since May 25, 2026, unnamed for confidentiality. The auto-approval rate went from 0% in June to 46% in August as the client wrote its rules; the rest is reviewed by a person. From June to August, invoice volume grew 72%, and fewer invoices went through a person than in June. 9,499 invoices as of September 27, 2026 · 30 carriers · figures from the production database. ~$3–4/month in model spend, capped in code.</p>
 </section>
 
 
@@ -897,6 +897,7 @@ footer{ background:var(--ink); color:var(--paper); position:relative; z-index:2;
   function fmt(el, val){
     var f = el.dataset.fmt, fr = !document.body.classList.contains('en');
     if(f === 'int'){ el.textContent = String(Math.round(val)); return; }
+    if(f === 'sep'){ var n = String(Math.round(val)); el.textContent = n.replace(/\B(?=(\d{3})+(?!\d))/g, fr ? '\u202F' : ','); return; }
     var s = val.toFixed(f === 'm' ? 2 : 1);
     el.textContent = fr ? s.replace('.', ',') : s;
   }
